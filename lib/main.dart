@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/pages/devices_page.dart';
+import 'package:nagaudio/pages/main_page.dart';
+import 'package:nagaudio/pages/main_page_library.dart';
+import 'package:nagaudio/pages/radio_page.dart';
+import 'package:nagaudio/pages/reorder_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,28 +14,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.green,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
-          titleTextStyle: TextStyle(color: Colors.black),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primarySwatch: Colors.green,
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white,
+            titleTextStyle: TextStyle(color: Colors.black),
+          ),
         ),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.green,
-        scaffoldBackgroundColor: Colors.grey[900],
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.grey[900],
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.green,
+          scaffoldBackgroundColor: Colors.grey[900],
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.grey[900],
+          ),
         ),
-      ),
-      themeMode: ThemeMode.dark,
-      home: DevicesPage(),
-    );
+        themeMode: ThemeMode.dark,
+        home: MainPage());
   }
 }
 

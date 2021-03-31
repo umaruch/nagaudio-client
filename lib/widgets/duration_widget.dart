@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DurationWidget extends StatelessWidget {
-  const DurationWidget({
+class DurationWidget extends StatefulWidget {
+  DurationWidget({
     Key key,
     @required this.durationSliderValue,
     @required this.timePassed,
@@ -13,21 +13,32 @@ class DurationWidget extends StatelessWidget {
   final String timeLeft;
 
   @override
+  _DurationWidgetState createState() => _DurationWidgetState();
+}
+
+class _DurationWidgetState extends State<DurationWidget> {
+  double durationValue = 0;
+  @override
+  void initState() {
+    super.initState();
+    durationValue = widget.durationSliderValue;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Slider(
-          value: durationSliderValue,
+          value: durationValue,
           min: 0,
           max: 100,
           activeColor: Colors.white,
           inactiveColor: Colors.grey,
-          onChangeEnd: (double value) {
-            // setState(() {
-            //   durationSliderValue = value;
-            // });
+          onChanged: (value) {
+            setState(() {
+              durationValue = value;
+            });
           },
-          onChanged: (value) {},
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -35,14 +46,14 @@ class DurationWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                timePassed,
+                widget.timePassed,
                 style: TextStyle(
                   color: Colors.grey[300],
                   fontSize: 13,
                 ),
               ),
               Text(
-                timeLeft,
+                widget.timeLeft,
                 style: TextStyle(
                   color: Colors.grey[300],
                   fontSize: 13,
