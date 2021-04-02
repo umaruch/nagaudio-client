@@ -14,27 +14,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.green,
-          scaffoldBackgroundColor: Colors.white,
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.white,
-            titleTextStyle: TextStyle(color: Colors.black),
-          ),
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(color: Colors.black),
         ),
-        darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          primarySwatch: Colors.green,
-          scaffoldBackgroundColor: Colors.grey[900],
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.grey[900],
-          ),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.grey[900],
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey[900],
         ),
-        themeMode: ThemeMode.dark,
-        home: MainPage());
+      ),
+      themeMode: ThemeMode.dark,
+      home: MainPage(),
+    );
   }
 }
 

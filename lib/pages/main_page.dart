@@ -350,10 +350,29 @@ class _MainPageState extends State<MainPage> {
                     showMaterialModalBottomSheet(
                       context: context,
                       backgroundColor: Colors.transparent,
-                      builder: (context) => RadioPage(),
+                      builder: (context) => RadioPage(
+                        title: 'Выберите вход',
+                        items: ['HD Player', 'S/PDIF-1', 'S/PDIF-2'],
+                        selectedIndex: 0,
+                      ),
                     );
                     break;
                   case 1:
+                    showMaterialModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => RadioPage(
+                        title: 'ЦАП Фильтр',
+                        items: [
+                          'Sharp Roll-Off',
+                          'Slow Roll-Off',
+                          'Short Delay Sharp Roll-Off',
+                          'Short Delay Slow Roll-Off Filter',
+                          'Super Slow Roll-Off Filter',
+                        ],
+                        selectedIndex: 0,
+                      ),
+                    );
                     break;
                   case 2:
                     break;

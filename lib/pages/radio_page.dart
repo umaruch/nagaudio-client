@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
 class RadioPage extends StatefulWidget {
-  RadioPage({Key key}) : super(key: key);
-
+  RadioPage(
+      {Key key,
+      @required this.title,
+      @required this.items,
+      @required this.selectedIndex})
+      : super(key: key);
+  final String title;
+  final List items;
+  final int selectedIndex;
   @override
   _RadioPageState createState() => _RadioPageState();
 }
@@ -10,10 +17,16 @@ class RadioPage extends StatefulWidget {
 class _RadioPageState extends State<RadioPage> {
   int _value = 0;
   @override
+  void initState() {
+    super.initState();
+    _value = widget.selectedIndex;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[900],
-      height: 200,
+      height: (widget.items.length * 40 + 80).toDouble(),
       child: Padding(
         padding: const EdgeInsets.only(top: 20, left: 20),
         child: Column(
@@ -21,7 +34,7 @@ class _RadioPageState extends State<RadioPage> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Выберите вход',
+                widget.title,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -29,9 +42,9 @@ class _RadioPageState extends State<RadioPage> {
                 ),
               ),
             ),
-            AppRadioButton(title: 'Text1', value: _value),
-            AppRadioButton(title: 'Text2', value: _value),
-            AppRadioButton(title: 'Text3', value: _value),
+            ...widget.items
+                .map((e) => AppRadioButton(value: 0, title: e))
+                .toList(),
           ],
         ),
       ),
