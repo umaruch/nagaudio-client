@@ -3,6 +3,7 @@ import 'package:nagaudio/pages/device_properties.dart';
 import 'package:nagaudio/pages/devices_page.dart';
 import 'package:nagaudio/pages/main_page.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
+import 'package:nagaudio/pages/network_settings_page.dart';
 import 'package:nagaudio/pages/radio_page.dart';
 import 'package:nagaudio/pages/reorder_page.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.dark,
-      home: DeviceProperties(),
+      home: NetworkSettingsPage(),
     );
   }
 }
