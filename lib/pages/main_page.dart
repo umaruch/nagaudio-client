@@ -362,7 +362,7 @@ class _MainPageState extends State<MainPage> {
                       context: context,
                       backgroundColor: Colors.transparent,
                       builder: (context) => RadioPage(
-                        title: 'ЦАП Фильтр',
+                        title: '',
                         items: [
                           'Sharp Roll-Off',
                           'Slow Roll-Off',

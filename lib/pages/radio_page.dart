@@ -15,11 +15,11 @@ class RadioPage extends StatefulWidget {
 }
 
 class _RadioPageState extends State<RadioPage> {
-  int _value = 0;
+  int value = 0;
   @override
   void initState() {
     super.initState();
-    _value = widget.selectedIndex;
+    value = widget.selectedIndex;
   }
 
   @override
