@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
+import 'package:nagaudio/pages/menu_page.dart';
 
 class BrowserPage extends StatefulWidget {
   BrowserPage({Key key}) : super(key: key);
@@ -22,7 +23,7 @@ class _BrowserPageState extends State<BrowserPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MainPageLibrary()),
+                    MaterialPageRoute(builder: (context) => MenuPage()),
                   );
                 },
               ),

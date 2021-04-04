@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/pages/device_properties.dart';
 import 'package:nagaudio/pages/main_page.dart';
 import 'package:nagaudio/models/device.dart';
+import 'package:nagaudio/pages/main_page_library.dart';
 
 class DevicesPage extends StatefulWidget {
   DevicesPage({Key key}) : super(key: key);
@@ -56,12 +58,7 @@ class _DevicesPageState extends State<DevicesPage> {
                 fontSize: 12,
               ),
             ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MainPage()),
-              );
-            },
+            onTap: () {},
           );
         },
       ),

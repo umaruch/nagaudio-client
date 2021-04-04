@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
+import 'package:nagaudio/pages/menu_page.dart';
 
 class DeviceProperties extends StatefulWidget {
   DeviceProperties({Key key}) : super(key: key);
@@ -22,11 +23,8 @@ class _DevicePropertiesState extends State<DeviceProperties> {
                   IconButton(
                     icon: Icon(Icons.arrow_back),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MainPageLibrary()),
-                      );
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MenuPage()));
                     },
                   ),
                   Text(
@@ -521,6 +519,9 @@ class _DevicePropertiesState extends State<DeviceProperties> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 100,
             ),
           ],
         ),

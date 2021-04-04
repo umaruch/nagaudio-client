@@ -39,13 +39,30 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
+              child: ReorderableListView.builder(
                 // itemExtent: 60,
+                onReorder: (oldIndex, newIndex) {
+                  setState(
+                    () {
+                      if (newIndex == 0) {
+                        return;
+                      }
+                      oldIndex -= 1;
+                      newIndex -= 1;
+                      if (newIndex > oldIndex) {
+                        newIndex = newIndex - 1;
+                      }
+                      final element = items.removeAt(oldIndex);
+                      items.insert(newIndex, element);
+                    },
+                  );
+                },
                 padding: EdgeInsets.only(top: 0),
                 itemCount: items.length + 1,
                 itemBuilder: (BuildContext context, int index) {
                   if (index == 0) {
                     return Column(
+                      key: ValueKey(currentItem.songName),
                       children: [
                         SizedBox(
                           height: 20,
@@ -282,6 +299,7 @@ class _MainPageState extends State<MainPage> {
                   index -= 1;
                   final item = items[index];
                   return SizedBox(
+                    key: ValueKey(item.songName),
                     height: 60,
                     child: Slidable(
                       actionPane: SlidableDrawerActionPane(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/pages/device_properties.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
+import 'package:nagaudio/pages/menu_page.dart';
 
 class NetworkSettingsPage extends StatefulWidget {
   NetworkSettingsPage({Key key}) : super(key: key);
@@ -24,8 +25,7 @@ class _NetworkSettingsPageState extends State<NetworkSettingsPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => MainPageLibrary()),
+                      MaterialPageRoute(builder: (context) => MenuPage()),
                     );
                   },
                 ),

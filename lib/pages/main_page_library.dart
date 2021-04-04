@@ -343,13 +343,7 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                       icon: Icon(Icons.playlist_play),
                       color: Colors.grey,
                       iconSize: 40,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DeviceProperties()),
-                        );
-                      },
+                      onPressed: () {},
                     ),
                     Text(
                       'Комната грязи',
@@ -367,13 +361,7 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                       icon: Icon(Icons.playlist_play),
                       color: Colors.grey,
                       iconSize: 40,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NetworkSettingsPage()),
-                        );
-                      },
+                      onPressed: () {},
                     ),
                     Text(
                       'Дворец в Италии',
@@ -391,13 +379,7 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                       icon: Icon(Icons.folder),
                       color: Colors.grey,
                       iconSize: 40,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => BrowserPage()),
-                        );
-                      },
+                      onPressed: () {},
                     ),
                     Text(
                       'Проводник',
