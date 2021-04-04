@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/pages/main_page_library.dart';
 
 class DeviceProperties extends StatefulWidget {
   DeviceProperties({Key key}) : super(key: key);
@@ -20,7 +21,13 @@ class _DevicePropertiesState extends State<DeviceProperties> {
                 children: [
                   IconButton(
                     icon: Icon(Icons.arrow_back),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MainPageLibrary()),
+                      );
+                    },
                   ),
                   Text(
                     'Сведения об устройстве',
