@@ -117,6 +117,7 @@ class _NetworkSettingsPageState extends State<NetworkSettingsPage> {
                 Container(
                   height: 40,
                   child: TextField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 5),
