@@ -49,10 +49,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/dsp_delay.png
-    - assets/icons/dsp_eq.png
-    - assets/icons/dsp_filter.png
-    - assets/icons/dsp_mixer.png
+    - assets/icons/
+   
 
   # To add assets to your application, add an assets section, like this:
   # assets:

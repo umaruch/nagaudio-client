@@ -39,7 +39,11 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.dark,
-      home: MenuPage(),
+      home: MixerPage(
+        playerSliderValue: 5,
+        pdifTwoSliderValue: 10,
+        pdifOneSliderValue: 20,
+      ),
     );
   }
 }
