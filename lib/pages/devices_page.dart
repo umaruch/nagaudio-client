@@ -12,11 +12,7 @@ class DevicesPage extends StatefulWidget {
 }
 
 class _DevicesPageState extends State<DevicesPage> {
-  List<Device> items = [
-    Device('Устройство 1', '880.255.35.35 : ka-3i-H0-777'),
-    Device('Устройство 2', '880.255.35.35 : ka-3i-H0-777'),
-  ];
-
+  List<Device> items = Device.stubDevices();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +57,10 @@ class _DevicesPageState extends State<DevicesPage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DeviceProperties()),
+                MaterialPageRoute(
+                    builder: (context) => DeviceProperties(
+                          item: item,
+                        )),
               );
             },
           );
