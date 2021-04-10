@@ -58,7 +58,12 @@ class _DevicesPageState extends State<DevicesPage> {
                 fontSize: 12,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DeviceProperties()),
+              );
+            },
           );
         },
       ),

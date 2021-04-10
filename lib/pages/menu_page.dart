@@ -4,6 +4,7 @@ import 'package:nagaudio/pages/device_properties.dart';
 import 'package:nagaudio/pages/devices_page.dart';
 import 'package:nagaudio/pages/main_page.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
+import 'package:nagaudio/pages/mixer_page.dart';
 import 'package:nagaudio/pages/network_settings_page.dart';
 
 class MenuPage extends StatefulWidget {
@@ -79,6 +80,16 @@ class _MenuPageState extends State<MenuPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => BrowserPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Миксер'),
+              trailing: Icon(Icons.forward),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MixerPage()),
                 );
               },
             ),

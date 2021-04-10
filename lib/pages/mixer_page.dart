@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/pages/menu_page.dart';
 
 class MixerPage extends StatefulWidget {
   MixerPage({
@@ -26,347 +27,349 @@ class _MixerPageState extends State<MixerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          onPressed: () {},
-                        ),
-                        Text(
-                          'Миксер',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                height: 0,
-                child: Divider(
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 30,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color:
-                            isActive == true ? Colors.green[300] : Colors.grey,
-                      ),
-                      child: TextButton(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back),
                         onPressed: () {
-                          setState(() {
-                            isActive = !isActive;
-                          });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MenuPage()),
+                          );
                         },
-                        child: Text(
-                          'Active',
-                          style: TextStyle(
-                            color: Colors.white,
+                      ),
+                      Text(
+                        'Миксер',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              height: 0,
+              child: Divider(
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: isActive == true ? Colors.green[300] : Colors.grey,
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          isActive = !isActive;
+                        });
+                      },
+                      child: Text(
+                        'Active',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'HD Player',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showEditDialog(context);
+                    },
+                    child: Icon(
+                      Icons.edit,
+                      size: 15,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  Text(
+                    'HD-Player',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.volume_up,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                  Expanded(
+                    child: Slider(
+                      value: playerValue,
+                      min: 0,
+                      max: 100,
+                      activeColor: Colors.green[300],
+                      inactiveColor: Colors.grey,
+                      onChanged: (value) {
+                        setState(() {
+                          playerValue = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  Text(
+                    'S/PDIF-1',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.volume_up,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                  Expanded(
+                    child: Slider(
+                      value: pdifOneValue,
+                      min: 0,
+                      max: 100,
+                      activeColor: Colors.green[300],
+                      inactiveColor: Colors.grey,
+                      onChanged: (value) {
+                        setState(() {
+                          pdifOneValue = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                children: [
+                  Text(
+                    'S/PDIF-2',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Icon(
+                    Icons.volume_up,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                  Expanded(
+                    child: Slider(
+                      value: pdifTwoValue,
+                      min: 0,
+                      max: 100,
+                      activeColor: Colors.green[300],
+                      inactiveColor: Colors.grey,
+                      onChanged: (value) {
+                        setState(() {
+                          pdifTwoValue = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Пресеты входов',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selected = 1;
+                        });
+                      },
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            bottomLeft: Radius.circular(5),
+                          ),
+                          color:
+                              selected == 1 ? Colors.green[300] : Colors.grey,
+                        ),
+                        child: Center(
+                          child: Text(
+                            '1',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'HD Player',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    InkWell(
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
                       onTap: () {
-                        showEditDialog(context);
+                        setState(() {
+                          selected = 2;
+                        });
                       },
-                      child: Icon(
-                        Icons.edit,
-                        size: 15,
-                        color: Colors.grey,
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color:
+                              selected == 2 ? Colors.green[300] : Colors.grey,
+                        ),
+                        child: Center(
+                          child: Text(
+                            '2',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'HD-Player',
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Icon(
-                      Icons.volume_up,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    Expanded(
-                      child: Slider(
-                        value: playerValue,
-                        min: 0,
-                        max: 100,
-                        activeColor: Colors.green[300],
-                        inactiveColor: Colors.grey,
-                        onChanged: (value) {
-                          setState(() {
-                            playerValue = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'S/PDIF-1',
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Icon(
-                      Icons.volume_up,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    Expanded(
-                      child: Slider(
-                        value: pdifOneValue,
-                        min: 0,
-                        max: 100,
-                        activeColor: Colors.green[300],
-                        inactiveColor: Colors.grey,
-                        onChanged: (value) {
-                          setState(() {
-                            pdifOneValue = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'S/PDIF-2',
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Icon(
-                      Icons.volume_up,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    Expanded(
-                      child: Slider(
-                        value: pdifTwoValue,
-                        min: 0,
-                        max: 100,
-                        activeColor: Colors.green[300],
-                        inactiveColor: Colors.grey,
-                        onChanged: (value) {
-                          setState(() {
-                            pdifTwoValue = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Text(
-                      'Пресеты входов',
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selected = 3;
+                        });
+                      },
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(5),
+                              bottomRight: Radius.circular(5),
+                            ),
+                            color: selected == 3
+                                ? Colors.green[300]
+                                : Colors.grey),
+                        child: Center(
+                          child: Text(
+                            '3',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 5,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selected = 1;
-                          });
-                        },
-                        child: Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(5),
-                              bottomLeft: Radius.circular(5),
-                            ),
-                            color:
-                                selected == 1 ? Colors.green[300] : Colors.grey,
-                          ),
-                          child: Center(
-                            child: Text(
-                              '1',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 3,
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selected = 2;
-                          });
-                        },
-                        child: Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color:
-                                selected == 2 ? Colors.green[300] : Colors.grey,
-                          ),
-                          child: Center(
-                            child: Text(
-                              '2',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 3,
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selected = 3;
-                          });
-                        },
-                        child: Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(5),
-                                bottomRight: Radius.circular(5),
-                              ),
-                              color: selected == 3
-                                  ? Colors.green[300]
-                                  : Colors.grey),
-                          child: Center(
-                            child: Text(
-                              '3',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -382,13 +385,13 @@ class _MixerPageState extends State<MixerPage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: SizedBox(
+            icon: Image(
               height: 30,
-              child: Image(
-                image: AssetImage(
-                  'assets/icons/dsp_mixer.png',
-                ),
-              ),
+              image: AssetImage('assets/icons/dsp_mixer.png'),
+            ),
+            activeIcon: Image(
+              height: 30,
+              image: AssetImage('assets/icons/dsp_mixer_active.png'),
             ),
             label: 'Миксер',
           ),

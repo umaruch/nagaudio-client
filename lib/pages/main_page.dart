@@ -380,7 +380,23 @@ class _MainPageState extends State<MainPage> {
                       context: context,
                       backgroundColor: Colors.transparent,
                       builder: (context) => RadioPage(
-                        title: '',
+                        title: 'DeviceName',
+                        items: [
+                          'Сведения об устройстве',
+                          'Настройки сети',
+                          'ЦАП Фильтры',
+                          'Сменить устройство'
+                        ],
+                        selectedIndex: 0,
+                      ),
+                    );
+                    break;
+                  case 2:
+                    showMaterialModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => RadioPage(
+                        title: 'ЦАП Фильтр',
                         items: [
                           'Sharp Roll-Off',
                           'Slow Roll-Off',
@@ -392,8 +408,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                     );
                     break;
-                  case 2:
-                    break;
+
                   case 4:
                     break;
                   default:

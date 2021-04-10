@@ -80,7 +80,13 @@ class _AppRadioButtonState extends State<AppRadioButton> {
       height: 40,
       child: RadioListTile(
         controlAffinity: ListTileControlAffinity.trailing,
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: Theme.of(context)
+              .textTheme
+              .subtitle1
+              .copyWith(color: widget.value == 1 ? Colors.green : Colors.grey),
+        ),
         value: value,
         groupValue: value,
         onChanged: (value) {
