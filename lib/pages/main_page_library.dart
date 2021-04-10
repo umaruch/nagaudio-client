@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/models/library.dart';
-import 'package:nagaudio/pages/browser_page.dart';
-import 'package:nagaudio/pages/device_properties.dart';
-import 'package:nagaudio/pages/network_settings_page.dart';
 
 class MainPageLibrary extends StatefulWidget {
   MainPageLibrary({Key key}) : super(key: key);
