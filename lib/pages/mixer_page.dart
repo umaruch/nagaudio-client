@@ -4,13 +4,7 @@ import 'package:nagaudio/pages/menu_page.dart';
 class MixerPage extends StatefulWidget {
   MixerPage({
     Key key,
-    @required this.playerSliderValue,
-    @required this.pdifOneSliderValue,
-    @required this.pdifTwoSliderValue,
   }) : super(key: key);
-  final double playerSliderValue;
-  final double pdifOneSliderValue;
-  final double pdifTwoSliderValue;
 
   @override
   _MixerPageState createState() => _MixerPageState();

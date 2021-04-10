@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/models/device.dart';
 import 'package:nagaudio/pages/browser_page.dart';
 import 'package:nagaudio/pages/device_properties.dart';
 import 'package:nagaudio/pages/devices_page.dart';
@@ -56,9 +57,14 @@ class _MenuPageState extends State<MenuPage> {
               title: Text('Сведения об устройстве'),
               trailing: Icon(Icons.forward),
               onTap: () {
+                Device item = Device.stubDevices().first;
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DeviceProperties()),
+                  MaterialPageRoute(
+                    builder: (context) => DeviceProperties(
+                      item: item,
+                    ),
+                  ),
                 );
               },
             ),

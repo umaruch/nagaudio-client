@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nagaudio/pages/browser_page.dart';
-import 'package:nagaudio/pages/device_properties.dart';
-import 'package:nagaudio/pages/devices_page.dart';
-import 'package:nagaudio/pages/main_page.dart';
-import 'package:nagaudio/pages/main_page_library.dart';
+
 import 'package:nagaudio/pages/menu_page.dart';
-import 'package:nagaudio/pages/mixer_page.dart';
-import 'package:nagaudio/pages/network_settings_page.dart';
-import 'package:nagaudio/pages/radio_page.dart';
-import 'package:nagaudio/pages/reorder_page.dart';
 
 void main() {
   runApp(MyApp());

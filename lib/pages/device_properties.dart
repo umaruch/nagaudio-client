@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/models/device.dart';
-import 'package:nagaudio/pages/main_page_library.dart';
-import 'package:nagaudio/pages/menu_page.dart';
 
 class DeviceProperties extends StatefulWidget {
   DeviceProperties({Key key, this.item}) : super(key: key);
 
-  Device item;
+  final Device item;
 
   @override
   _DevicePropertiesState createState() => _DevicePropertiesState();
