@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nagaudio/models/library.dart';
+import 'package:nagaudio/models/playlist.dart';
+import 'package:nagaudio/pages/browser_page.dart';
+import 'package:nagaudio/pages/main_page.dart';
 
 class MainPageLibrary extends StatefulWidget {
   MainPageLibrary({Key key}) : super(key: key);
@@ -9,12 +11,7 @@ class MainPageLibrary extends StatefulWidget {
 }
 
 class _MainPageLibraryState extends State<MainPageLibrary> {
-  List<Library> items = [
-    Library('playlist_play', 'Аква-дискотека'),
-    Library('playlist_playa', 'Комната грязи'),
-    Library('playlist_play', 'Дворец в Италии'),
-    Library('folder', 'Проводник'),
-  ];
+  List<Playlist> items = Playlist.stubItems();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,570 +73,273 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                 ),
               ),
             ),
-
-//           SizedBox(
-//             height: 240,
-//             child: ReorderableListView.builder(
-//               itemCount: items.length,
-//               itemBuilder: (BuildContext context, int index) {
-//                 final String productName = 'items';
-//                 return Card(
-//                   key: ValueKey(productName),
-//                   color: Colors.amberAccent,
-//                   elevation: 1,
-//                   margin: const EdgeInsets.all(10),
-//                   child: ListTile(
-//                     leading: IconButton(
-//                         icon: Icon(
-//                           Icons.ac_unit,
-//                           color: Colors.grey,
-//                           size: 30,
-//                         ),
-//                         onPressed: () {
-//                           showDialog(
-//                             context: context,
-//                             builder: (BuildContext context) {
-//                               return Dialog(
-//                                 shape: RoundedRectangleBorder(
-//                                   borderRadius: BorderRadius.circular(10),
-//                                 ), //this right here
-//                                 child: Container(
-//                                   decoration: BoxDecoration(
-//                                     borderRadius:
-//                                         BorderRadius.all(Radius.circular(10)),
-//                                     color: Colors.grey[850],
-//                                   ),
-//                                   height: 120,
-//                                   child: Padding(
-//                                     padding: const EdgeInsets.all(10),
-//                                     child: Column(
-//                                       crossAxisAlignment:
-//                                           CrossAxisAlignment.start,
-//                                       children: [
-//                                         Text(
-//                                           'Переименовать плейлист',
-//                                           style: TextStyle(
-//                                             color: Colors.white,
-//                                             fontSize: 18,
-//                                             fontWeight: FontWeight.bold,
-//                                           ),
-//                                         ),
-//                                         SizedBox(
-//                                           height: 10,
-//                                         ),
-//                                         Container(
-//                                           height: 30,
-//                                           child: TextField(
-//                                             decoration: InputDecoration(
-//                                               contentPadding:
-//                                                   const EdgeInsets.symmetric(
-//                                                       vertical: 1,
-//                                                       horizontal: 5),
-//                                               focusedBorder: OutlineInputBorder(
-//                                                 borderSide: BorderSide(
-//                                                   color: Colors.grey[800],
-//                                                 ),
-//                                               ),
-//                                               enabledBorder: OutlineInputBorder(
-//                                                 borderSide: BorderSide(
-//                                                   color: Colors.grey[800],
-//                                                 ),
-//                                               ),
-//                                               filled: true,
-//                                               hintText: 'Имя плейлиста',
-//                                               hintStyle:
-//                                                   TextStyle(color: Colors.grey),
-//                                               fillColor: Colors.grey[800],
-//                                             ),
-//                                             style: TextStyle(
-//                                               color: Colors.white,
-//                                             ),
-//                                           ),
-//                                         ),
-//                                         SizedBox(
-//                                           height: 15,
-//                                         ),
-//                                         Row(
-//                                           mainAxisAlignment:
-//                                               MainAxisAlignment.spaceAround,
-//                                           children: [
-//                                             InkWell(
-//                                               onTap: () {
-//                                                 Navigator.pop(context);
-//                                               },
-//                                               child: Container(
-//                                                 child: Text(
-//                                                   'Отмена',
-//                                                   style: TextStyle(
-//                                                     color: Colors.grey,
-//                                                     fontSize: 18,
-//                                                     fontWeight: FontWeight.bold,
-//                                                   ),
-//                                                 ),
-//                                               ),
-//                                             ),
-//                                             InkWell(
-//                                               onTap: () {},
-//                                               child: Container(
-//                                                 child: Text(
-//                                                   'Сохранить',
-//                                                   style: TextStyle(
-//                                                     color: Colors.grey,
-//                                                     fontSize: 18,
-//                                                     fontWeight: FontWeight.bold,
-//                                                   ),
-//                                                 ),
-//                                               ),
-//                                             ),
-//                                           ],
-//                                         ),
-//                                       ],
-//                                     ),
-//                                   ),
-//                                 ),
-//                               );
-//                             },
-//                           );
-//                           Text(
-//                             items[index].buttonName,
-//                             style: TextStyle(
-//                               color: Colors.grey,
-//                               fontSize: 20,
-//                               fontWeight: FontWeight.bold,
-//                             ),
-//                           );
-//                         }
-            Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.playlist_play),
+            Expanded(
+              child: ListView.builder(
+                itemExtent: 44,
+                itemCount: items.length + 1,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == items.length) {
+                    return ListTile(
+                      leading: Icon(
+                        Icons.folder,
                         color: Colors.grey,
-                        iconSize: 40,
-                        onPressed: () {},
+                        size: 35,
                       ),
-                      Text(
-                        'Аква-дискотека',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.playlist_play),
-                        color: Colors.grey,
-                        iconSize: 40,
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Padding(
-                                padding: EdgeInsets.only(bottom: 50),
-                                child: Dialog(
-                                  backgroundColor: Colors.grey[850],
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ), //this right here
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
-                                      color: Colors.grey[850],
-                                    ),
-                                    height: 220,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              IconButton(
-                                                icon: Icon(Icons.play_arrow),
-                                                color: Colors.grey,
-                                                iconSize: 25,
-                                                onPressed: () {},
-                                              ),
-                                              Text(
-                                                'Воспроизвести',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              IconButton(
-                                                icon: Icon(Icons.add),
-                                                color: Colors.grey,
-                                                iconSize: 25,
-                                                onPressed: () {},
-                                              ),
-                                              Text(
-                                                'Добавить в очередь',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              IconButton(
-                                                icon: Icon(Icons.edit),
-                                                color: Colors.grey,
-                                                iconSize: 25,
-                                                onPressed: () {
-                                                  showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return Dialog(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                        ), //this right here
-                                                        child: Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            10)),
-                                                            color: Colors
-                                                                .grey[850],
-                                                          ),
-                                                          height: 120,
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(10),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  'Переименовать плейлист',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        18,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Container(
-                                                                  height: 30,
-                                                                  child:
-                                                                      TextField(
-                                                                    decoration:
-                                                                        InputDecoration(
-                                                                      contentPadding: const EdgeInsets
-                                                                              .symmetric(
-                                                                          vertical:
-                                                                              1,
-                                                                          horizontal:
-                                                                              5),
-                                                                      focusedBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.grey[800],
-                                                                        ),
-                                                                      ),
-                                                                      enabledBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.grey[800],
-                                                                        ),
-                                                                      ),
-                                                                      filled:
-                                                                          true,
-                                                                      hintText:
-                                                                          'Имя плейлиста',
-                                                                      hintStyle:
-                                                                          TextStyle(
-                                                                              color: Colors.grey),
-                                                                      fillColor:
-                                                                          Colors
-                                                                              .grey[800],
-                                                                    ),
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 15,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceAround,
-                                                                  children: [
-                                                                    InkWell(
-                                                                      onTap:
-                                                                          () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        child:
-                                                                            Text(
-                                                                          'Отмена',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                Colors.grey,
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    InkWell(
-                                                                      onTap:
-                                                                          () {},
-                                                                      child:
-                                                                          Container(
-                                                                        child:
-                                                                            Text(
-                                                                          'Сохранить',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                Colors.grey,
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                              Text(
-                                                'Переименовать',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return Dialog(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ), //this right here
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    10)),
-                                                        color: Colors.grey[850],
-                                                      ),
-                                                      height: 100,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(10),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Удалить плейлист',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              height: 30,
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceAround,
-                                                              children: [
-                                                                InkWell(
-                                                                  onTap: () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    child: Text(
-                                                                      'Отмена',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        fontSize:
-                                                                            18,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                InkWell(
-                                                                  onTap: () {},
-                                                                  child:
-                                                                      Container(
-                                                                    child: Text(
-                                                                      'Ок',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        fontSize:
-                                                                            18,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            child: Row(
-                                              children: [
-                                                IconButton(
-                                                  icon: Icon(Icons.delete),
-                                                  color: Colors.grey,
-                                                  iconSize: 25,
-                                                  onPressed: () {},
-                                                ),
-                                                Text(
-                                                  'Удалить',
-                                                  style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                      Text(
-                        'Комната грязи',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.playlist_play),
-                        color: Colors.grey,
-                        iconSize: 40,
-                        onPressed: () {},
-                      ),
-                      Text(
-                        'Дворец в Италии',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.folder),
-                        color: Colors.grey,
-                        iconSize: 40,
-                        onPressed: () {},
-                      ),
-                      Text(
+                      title: Text(
                         'Проводник',
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 18,
                           fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BrowserPage(
+                                // item: item,
+                                ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  final item = items[index];
+                  return ListTile(
+                    leading: Icon(
+                      Icons.playlist_play,
+                      color: Colors.grey,
+                      size: 40,
+                    ),
+                    title: Text(
+                      item.name,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainPage(
+                            item: item,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future showPlaylistDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.only(bottom: 50),
+          child: Dialog(
+            backgroundColor: Colors.grey[850],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ), //this right here
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Colors.grey[850],
+              ),
+              height: 220,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.play_arrow),
+                          color: Colors.grey,
+                          iconSize: 25,
+                          onPressed: () {},
+                        ),
+                        Text(
+                          'Воспроизвести',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.add),
+                          color: Colors.grey,
+                          iconSize: 25,
+                          onPressed: () {},
+                        ),
+                        Text(
+                          'Добавить в очередь',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    InkWell(
+                      onTap: () {
+                        showRenameDialog(context);
+                      },
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.edit),
+                            color: Colors.grey,
+                            iconSize: 25,
+                            onPressed: null,
+                          ),
+                          Text(
+                            'Переименовать',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        showRemoveDialog(context);
+                      },
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            color: Colors.grey,
+                            iconSize: 25,
+                            onPressed: null,
+                          ),
+                          Text(
+                            'Удалить',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future showRenameDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ), //this right here
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.grey[850],
+            ),
+            height: 120,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Переименовать плейлист',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 30,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 1, horizontal: 5),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        filled: true,
+                        hintText: 'Имя плейлиста',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        fillColor: Colors.grey[800],
+                      ),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          child: Text(
+                            'Отмена',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          child: Text(
+                            'Сохранить',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -647,9 +347,81 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                 ],
               ),
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future showRemoveDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ), //this right here
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.grey[850],
+            ),
+            height: 100,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Удалить плейлист',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          child: Text(
+                            'Отмена',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          child: Text(
+                            'Ок',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

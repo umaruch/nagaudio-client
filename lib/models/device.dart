@@ -23,7 +23,7 @@ class Device {
     this.lastUpdated,
   });
 
-  static List<Device> stubDevices() {
+  static List<Device> stubItems() {
     return [
       Device(
         name: 'Устройство 1',

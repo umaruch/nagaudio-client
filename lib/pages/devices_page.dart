@@ -11,7 +11,7 @@ class DevicesPage extends StatefulWidget {
 }
 
 class _DevicesPageState extends State<DevicesPage> {
-  List<Device> items = Device.stubDevices();
+  List<Device> items = Device.stubItems();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
