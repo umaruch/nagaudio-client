@@ -119,14 +119,7 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MainPage(
-                            item: item,
-                          ),
-                        ),
-                      );
+                      showPlaylistDialog(context);
                     },
                   );
                 },
@@ -160,23 +153,35 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.play_arrow),
-                          color: Colors.grey,
-                          iconSize: 25,
-                          onPressed: () {},
-                        ),
-                        Text(
-                          'Воспроизвести',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainPage(
+                              item: Playlist.stubItems().first,
+                            ),
                           ),
-                        ),
-                      ],
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.play_arrow),
+                            color: Colors.grey,
+                            iconSize: 25,
+                            onPressed: () {},
+                          ),
+                          Text(
+                            'Воспроизвести',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     Row(
                       children: [
