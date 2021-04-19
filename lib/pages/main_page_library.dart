@@ -58,21 +58,51 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Плейлисты',
-                  hintStyle: TextStyle(
-                    color: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Плейлисты',
+                    style: TextStyle(),
                   ),
-                  suffixIcon: Icon(
+                  Icon(
                     Icons.update,
                     color: Colors.white,
                     size: 20,
                   ),
-                ),
+                ],
               ),
             ),
+            SizedBox(
+              height: 3,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                height: 1,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 20, right: 20),
+            //   child: TextField(
+            //     decoration: InputDecoration(
+            //       hintText: 'Плейлисты',
+            //       hintStyle: TextStyle(
+            //         color: Colors.white,
+            //       ),
+            //       suffixIcon: Icon(
+            //         Icons.update,
+            //         color: Colors.white,
+            //         size: 20,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Expanded(
               child: ListView.builder(
                 itemExtent: 44,

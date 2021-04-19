@@ -25,8 +25,8 @@ class _DevicePropertiesState extends State<DeviceProperties> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
@@ -172,7 +172,6 @@ class _DevicePropertiesState extends State<DeviceProperties> {
                   children: [
                     Container(
                       height: 35,
-                      width: 240,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.grey,
@@ -191,7 +190,7 @@ class _DevicePropertiesState extends State<DeviceProperties> {
                 ),
               ),
               SizedBox(
-                height: 100,
+                height: 20,
               ),
             ],
           ),

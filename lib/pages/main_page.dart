@@ -21,8 +21,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   bool isRandom = false;
   bool isRepeat = false;
+
   double durationSliderValue = 55;
   double soundSliderValue = 70;
+
   String timePassed = '3.26';
   String timeLeft = '4.43';
 
@@ -158,154 +160,148 @@ class _MainPageState extends State<MainPage> {
                                             ),
                                             onPressed: () {
                                               showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return Dialog(
-                                                      shape:
-                                                          RoundedRectangleBorder(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return Dialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ), //this right here
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                      ), //this right here
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          10)),
-                                                          color:
-                                                              Colors.grey[850],
-                                                        ),
-                                                        height: 120,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(10),
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                'Создать плейлист',
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10)),
+                                                        color: Colors.grey[850],
+                                                      ),
+                                                      height: 120,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Создать плейлист',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            Container(
+                                                              height: 30,
+                                                              child: TextField(
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  contentPadding:
+                                                                      const EdgeInsets
+                                                                              .symmetric(
+                                                                          vertical:
+                                                                              8),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          800],
+                                                                    ),
+                                                                  ),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          800],
+                                                                    ),
+                                                                  ),
+                                                                  filled: true,
+                                                                  hintText: '',
+                                                                  hintStyle: TextStyle(
+                                                                      color: Colors
+                                                                          .white),
+                                                                  fillColor:
+                                                                      Colors.grey[
+                                                                          800],
+                                                                ),
                                                                 style:
                                                                     TextStyle(
                                                                   color: Colors
                                                                       .white,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
                                                                 ),
                                                               ),
-                                                              SizedBox(
-                                                                height: 10,
-                                                              ),
-                                                              Container(
-                                                                height: 30,
-                                                                child:
-                                                                    TextField(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    contentPadding: const EdgeInsets
-                                                                            .symmetric(
-                                                                        vertical:
-                                                                            8),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
+                                                            ),
+                                                            SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceAround,
+                                                              children: [
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    child: Text(
+                                                                      'Отмена',
+                                                                      style:
+                                                                          TextStyle(
                                                                         color: Colors
-                                                                            .grey[800],
+                                                                            .grey,
+                                                                        fontSize:
+                                                                            18,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                       ),
                                                                     ),
-                                                                    enabledBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .grey[800],
-                                                                      ),
-                                                                    ),
-                                                                    filled:
-                                                                        true,
-                                                                    hintText:
-                                                                        '',
-                                                                    hintStyle: TextStyle(
-                                                                        color: Colors
-                                                                            .white),
-                                                                    fillColor:
-                                                                        Colors.grey[
-                                                                            800],
-                                                                  ),
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .white,
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(
-                                                                height: 15,
-                                                              ),
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceAround,
-                                                                children: [
-                                                                  InkWell(
-                                                                    onTap: () {
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      child:
-                                                                          Text(
-                                                                        'Отмена',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Colors.grey,
-                                                                          fontSize:
-                                                                              18,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
+                                                                InkWell(
+                                                                  onTap: () {},
+                                                                  child:
+                                                                      Container(
+                                                                    child: Text(
+                                                                      'Сохранить',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Colors
+                                                                            .grey,
+                                                                        fontSize:
+                                                                            18,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                  InkWell(
-                                                                    onTap:
-                                                                        () {},
-                                                                    child:
-                                                                        Container(
-                                                                      child:
-                                                                          Text(
-                                                                        'Сохранить',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Colors.grey,
-                                                                          fontSize:
-                                                                              18,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    );
-                                                  });
+                                                    ),
+                                                  );
+                                                },
+                                              );
                                             },
                                           ),
                                         ],
@@ -379,63 +375,66 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.only(left: 25, right: 25),
               child: MusicSliderWidget(soundSliderValue: soundSliderValue),
             ),
-            BottomActionsWidget(
-              onTabSelected: (index) {
-                print(index);
-                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                //   content: Text('Selected $index'),
-                // ));
-                switch (index) {
-                  case 0:
-                    showMaterialModalBottomSheet(
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      builder: (context) => RadioPage(
-                        title: 'Выберите вход',
-                        items: ['HD Player', 'S/PDIF-1', 'S/PDIF-2'],
-                        selectedIndex: 0,
-                      ),
-                    );
-                    break;
-                  case 1:
-                    showMaterialModalBottomSheet(
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      builder: (context) => RadioPage(
-                        title: 'DeviceName',
-                        items: [
-                          'Сведения об устройстве',
-                          'Настройки сети',
-                          'ЦАП Фильтры',
-                          'Сменить устройство'
-                        ],
-                        selectedIndex: 0,
-                      ),
-                    );
-                    break;
-                  case 2:
-                    showMaterialModalBottomSheet(
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      builder: (context) => RadioPage(
-                        title: 'ЦАП Фильтр',
-                        items: [
-                          'Sharp Roll-Off',
-                          'Slow Roll-Off',
-                          'Short Delay Sharp Roll-Off',
-                          'Short Delay Slow Roll-Off Filter',
-                          'Super Slow Roll-Off Filter',
-                        ],
-                        selectedIndex: 0,
-                      ),
-                    );
-                    break;
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: BottomActionsWidget(
+                onTabSelected: (index) {
+                  print(index);
+                  // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  //   content: Text('Selected $index'),
+                  // ));
+                  switch (index) {
+                    case 0:
+                      showMaterialModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => RadioPage(
+                          title: 'Выберите вход',
+                          items: ['HD Player', 'S/PDIF-1', 'S/PDIF-2'],
+                          selectedIndex: 0,
+                        ),
+                      );
+                      break;
+                    case 1:
+                      showMaterialModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => RadioPage(
+                          title: 'DeviceName',
+                          items: [
+                            'Сведения об устройстве',
+                            'Настройки сети',
+                            'ЦАП Фильтры',
+                            'Сменить устройство'
+                          ],
+                          selectedIndex: 0,
+                        ),
+                      );
+                      break;
+                    case 2:
+                      showMaterialModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => RadioPage(
+                          title: 'ЦАП Фильтр',
+                          items: [
+                            'Sharp Roll-Off',
+                            'Slow Roll-Off',
+                            'Short Delay Sharp Roll-Off',
+                            'Short Delay Slow Roll-Off Filter',
+                            'Super Slow Roll-Off Filter',
+                          ],
+                          selectedIndex: 0,
+                        ),
+                      );
+                      break;
 
-                  case 4:
-                    break;
-                  default:
-                }
-              },
+                    case 4:
+                      break;
+                    default:
+                  }
+                },
+              ),
             ),
           ],
         ),

@@ -4,6 +4,8 @@ import 'package:nagaudio/models/playlist.dart';
 import 'package:nagaudio/pages/browser_page.dart';
 import 'package:nagaudio/pages/device_properties.dart';
 import 'package:nagaudio/pages/devices_page.dart';
+import 'package:nagaudio/pages/equalizer_page.dart';
+import 'package:nagaudio/pages/filters_page.dart';
 import 'package:nagaudio/pages/main_page.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
 import 'package:nagaudio/pages/mixer_page.dart';
@@ -100,6 +102,26 @@ class _MenuPageState extends State<MenuPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MixerPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Эквалайзер'),
+              trailing: Icon(Icons.forward),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EqualizerPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Фильтр'),
+              trailing: Icon(Icons.forward),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FiltersPage()),
                 );
               },
             ),
