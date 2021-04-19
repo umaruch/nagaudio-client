@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/widgets/output_widget.dart';
 
 class FiltersPage extends StatefulWidget {
   FiltersPage({Key key}) : super(key: key);
@@ -10,6 +11,8 @@ class FiltersPage extends StatefulWidget {
 class _FiltersPageState extends State<FiltersPage> {
   int selectedTabIndex = 1;
   String title = '80%';
+  String selectedOutput;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,143 +23,162 @@ class _FiltersPageState extends State<FiltersPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    buildPhaseButton('Phase'),
-                    buildOutputButton(),
-                    buildPhaseButton('Mute'),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 70,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  Text(
-                    'Volume',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 150,
-              width: 350,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 50,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.grey,
-                        size: 80,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 130,
-                    top: 15,
-                    child: Container(
-                      height: 40,
-                      width: 80,
-                      color: Colors.black,
-                      child: Center(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            buildPhaseButton('Phase'),
+                            buildOutputButton(),
+                            buildPhaseButton('Mute'),
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    right: 40,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.grey,
-                        size: 80,
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Volume',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  Text(
-                    'HPF',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                    Container(
+                      height: 100,
+                      width: 350,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            left: 50,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.grey,
+                                size: 80,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 130,
+                            top: 15,
+                            child: Container(
+                              height: 40,
+                              width: 80,
+                              color: Colors.black,
+                              child: Center(
+                                child: Text(
+                                  title,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 40,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.grey,
+                                size: 80,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    buildPhaseButton('Bessel'),
-                    buildPhaseButton('10 Hz'),
-                    buildPhaseButton('12 db/Oct'),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'HPF',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            buildPhaseButton('Bessel'),
+                            buildPhaseButton('10 Hz'),
+                            buildPhaseButton('12 db/Oct'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'LPF',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            buildPhaseButton('Link-Ril'),
+                            buildPhaseButton('OFF'),
+                            buildPhaseButton('12 db/Oct'),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 30,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  Text(
-                    'LPF',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    buildPhaseButton('Link-Ril'),
-                    buildPhaseButton('OFF'),
-                    buildPhaseButton('12 db/Oct'),
-                  ],
-                ),
-              ),
+            OutputWidget(
+              selectedOutput: selectedOutput,
+              onSelect: (value) {
+                setState(() {
+                  selectedOutput = value;
+                });
+              },
             ),
           ],
         ),

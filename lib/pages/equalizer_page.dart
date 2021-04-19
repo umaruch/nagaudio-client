@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/widgets/output_widget.dart';
 
 class EqualizerPage extends StatefulWidget {
   EqualizerPage({Key key}) : super(key: key);
@@ -9,7 +10,7 @@ class EqualizerPage extends StatefulWidget {
 
 class _EqualizerPageState extends State<EqualizerPage> {
   int selectedTabIndex = 2;
-  int inSelect;
+  String selectedOutput;
   double noiseSliderValue = 10;
   double sinSliderValue = 20;
   double val = 5;
@@ -21,184 +22,195 @@ class _EqualizerPageState extends State<EqualizerPage> {
         title: Text('Эквалайзер'),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Padding(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      buildVoiceButton('Phase'),
+                      buildOutputButton(),
+                      buildVoiceButton('Mute'),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 70,
+              ),
+              Container(
+                color: Colors.red,
+                height: 150,
+                width: 250,
+                child: Transform(
+                  alignment: FractionalOffset.center,
+                  transform: Matrix4.identity()..rotateZ(90 * 3.1415927 / 180),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          activeTrackColor: Colors.grey,
+                          inactiveTrackColor: Colors.grey,
+                          thumbShape:
+                              RoundSliderThumbShape(enabledThumbRadius: 15),
+                          thumbColor: Colors.grey,
+                          overlayShape:
+                              RoundSliderOverlayShape(overlayRadius: 15),
+                        ),
+                        child: Slider(
+                          value: val.toDouble(),
+                          min: 1,
+                          max: 10,
+                          label: '$val',
+                          onChanged: (double newValue) {
+                            setState(() {
+                              val = newValue;
+                            });
+                          },
+                        ),
+                      ),
+
+                      // buildSliderVertical(),
+                      // buildSliderVertical(),
+                      // buildSliderVertical(),
+                      // buildSliderVertical(),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Text('aas'),
+              Text('aas'),
+              Text('aas'),
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildVoiceButton('Phase'),
-                    buildOutputButton(),
-                    buildVoiceButton('Mute'),
+                    buildVoiceButton('Reset'),
+                    buildVoiceButton('Bypass'),
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 70,
-            ),
-            Container(
-              height: 150,
-              width: 250,
-              child: Transform(
-                alignment: FractionalOffset.center,
-                transform: Matrix4.identity()..rotateZ(90 * 3.1415927 / 180),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        activeTrackColor: Colors.grey,
-                        inactiveTrackColor: Colors.grey,
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 15),
-                        thumbColor: Colors.grey,
-                        overlayShape:
-                            RoundSliderOverlayShape(overlayRadius: 10),
-                      ),
-                      child: Slider(
-                        value: val.toDouble(),
-                        min: 1,
-                        max: 10,
-                        label: '$val',
-                        onChanged: (double newValue) {
-                          setState(() {
-                            val = newValue;
-                          });
-                        },
+                    Text(
+                      'W. Noise',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Text(
+                      '${noiseSliderValue.toInt().toString()}%',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              buildSliderValue(Icons.volume_off, noiseSliderValue, (value) {
+                setState(() {
+                  noiseSliderValue = value;
+                });
+              }),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Sin 1kHz',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '${sinSliderValue.toInt().toString()}%',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              buildSliderValue(Icons.volume_up, sinSliderValue, (value) {
+                setState(() {
+                  sinSliderValue = value;
+                });
+              }),
+              SizedBox(
+                height: 40,
+              ),
+              OutputWidget(
+                  selectedOutput: selectedOutput,
+                  onSelect: (value) {
+                    setState(() {
+                      selectedOutput = value;
+                    });
+                  }),
 
-                    // buildSliderVertical(),
-                    // buildSliderVertical(),
-                    // buildSliderVertical(),
-                    // buildSliderVertical(),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Text('aas'),
-            Text('aas'),
-            Text('aas'),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  buildVoiceButton('Reset'),
-                  buildVoiceButton('Bypass'),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'W. Noise',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '${noiseSliderValue.toInt().toString()}%',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            buildSliderValue(Icons.volume_off, noiseSliderValue, (value) {
-              setState(() {
-                noiseSliderValue = value;
-              });
-            }),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Sin 1kHz',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '${sinSliderValue.toInt().toString()}%',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            buildSliderValue(Icons.volume_up, sinSliderValue, (value) {
-              setState(() {
-                sinSliderValue = value;
-              });
-            }),
-            SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                children: [
-                  Text(
-                    'Выходы',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        buildNumbers('1', 1),
-                        buildNumbers('3', 3),
-                        buildNumbers('5', 5),
-                        buildNumbers('7', 7),
-                        buildNumbers('9', 9),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        buildNumbers('2', 2),
-                        buildNumbers('4', 4),
-                        buildNumbers('6', 6),
-                        buildNumbers('8', 8),
-                        buildNumbers('10', 10),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 10),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         'Выходы',
+              //         style: TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 4),
+              //   child: ClipRRect(
+              //     borderRadius: BorderRadius.circular(8),
+              //     child: Column(
+              //       children: [
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //           children: [
+              //             buildNumbers('1'),
+              //             buildNumbers('3'),
+              //             buildNumbers('5'),
+              //             buildNumbers('7'),
+              //             buildNumbers('9'),
+              //           ],
+              //         ),
+              //         SizedBox(
+              //           height: 4,
+              //         ),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //           children: [
+              //             buildNumbers('2'),
+              //             buildNumbers('4'),
+              //             buildNumbers('6'),
+              //             buildNumbers('8'),
+              //             buildNumbers('10'),
+              //           ],
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: buildBottomNavigationBar(),
@@ -286,33 +298,6 @@ class _EqualizerPageState extends State<EqualizerPage> {
             label: 'Задержка',
           )
         ],
-      ),
-    );
-  }
-
-  Widget buildNumbers(String title, int inSelect) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        child: InkWell(
-          onTap: () {
-            setState(() {
-              inSelect = inSelect;
-            });
-          },
-          child: Container(
-            height: 40,
-            color: inSelect == 1 ? Colors.green[300] : Colors.grey,
-            child: Center(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }
