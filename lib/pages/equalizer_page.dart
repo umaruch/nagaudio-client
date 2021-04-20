@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:nagaudio/widgets/output_widget.dart';
 import 'package:awesome_slider/awesome_slider.dart';
@@ -10,6 +11,12 @@ class EqualizerPage extends StatefulWidget {
 }
 
 class _EqualizerPageState extends State<EqualizerPage> {
+  double slider1Value = 80;
+  double slider2Value = 20;
+  double slider3Value = 55;
+  double slider4Value = 70;
+  double slider5Value = 60;
+
   int selectedTabIndex = 2;
   String selectedOutput = '1';
   double noiseSliderValue = 0;
@@ -18,6 +25,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width * 0.85;
     return Scaffold(
       appBar: AppBar(
         title: Text('Эквалайзер'),
@@ -43,138 +51,82 @@ class _EqualizerPageState extends State<EqualizerPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Column(
-                        children: [
-                          Transform(
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Positioned(
+                          top: (width - 75) / 2,
+                          left: 0,
+                          right: 0,
+                          child: DottedLine(
+                            dashColor: Colors.grey,
+                          ),
+                        ),
+                        Positioned(
+                          child: Transform(
                             alignment: FractionalOffset.center,
                             transform: Matrix4.identity()
                               ..rotateZ(90 * 3.1415927 / 180),
-                            child: Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    awesomeSlider(80),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    awesomeSlider(20),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    awesomeSlider(50),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    awesomeSlider(70),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    awesomeSlider(60),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Transform(
-                                      alignment: FractionalOffset.center,
-                                      transform: Matrix4.identity()
-                                        ..rotateZ(90 * 3.1415927 / 60),
-                                      child: Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text('-8.0 db'),
-                                              Text('2.215'),
-                                              Text('14 kHz'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 32,
-                                    ),
-                                    Transform(
-                                      alignment: FractionalOffset.center,
-                                      transform: Matrix4.identity()
-                                        ..rotateZ(90 * 3.1415927 / 60),
-                                      child: Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text('-8.0 db'),
-                                              Text('2.215'),
-                                              Text('3 kHz'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 32,
-                                    ),
-                                    Transform(
-                                      alignment: FractionalOffset.center,
-                                      transform: Matrix4.identity()
-                                        ..rotateZ(90 * 3.1415927 / 60),
-                                      child: Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text('-8.0 db'),
-                                              Text('2.215'),
-                                              Text('910 Hz'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 32,
-                                    ),
-                                    Transform(
-                                      alignment: FractionalOffset.center,
-                                      transform: Matrix4.identity()
-                                        ..rotateZ(90 * 3.1415927 / 60),
-                                      child: Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text('-8.0 db'),
-                                              Text('2.215'),
-                                              Text('230 Hz'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 32,
-                                    ),
-                                    Transform(
-                                      alignment: FractionalOffset.center,
-                                      transform: Matrix4.identity()
-                                        ..rotateZ(90 * 3.1415927 / 60),
-                                      child: Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text('-8.0 db'),
-                                              Text('2.215'),
-                                              Text('60 Hz'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            child: Container(
+                              width: width,
+                              height: width,
+                              child: Row(
+                                children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      awesomeSlider(
+                                          slider1Value,
+                                          '-8.0 db\n2.215\n14 kHz',
+                                          width, (value) {
+                                        setState(() {
+                                          slider1Value = value;
+                                        });
+                                      }),
+                                      awesomeSlider(
+                                          slider2Value,
+                                          '-8.0 db\n2.215\n14 kHz',
+                                          width, (value) {
+                                        setState(() {
+                                          slider2Value = value;
+                                        });
+                                      }),
+                                      awesomeSlider(
+                                          slider3Value,
+                                          '-8.0 db\n2.215\n14 kHz',
+                                          width, (value) {
+                                        setState(() {
+                                          slider3Value = value;
+                                        });
+                                      }),
+                                      awesomeSlider(
+                                          slider4Value,
+                                          '-8.0 db\n2.215\n14 kHz',
+                                          width, (value) {
+                                        setState(() {
+                                          slider4Value = value;
+                                        });
+                                      }),
+                                      awesomeSlider(
+                                          slider5Value,
+                                          '-8.0 db\n2.215\n14 kHz',
+                                          width, (value) {
+                                        setState(() {
+                                          slider5Value = value;
+                                        });
+                                      }),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -264,36 +216,47 @@ class _EqualizerPageState extends State<EqualizerPage> {
     );
   }
 
-  AwesomeSlider awesomeSlider(double valueOnTextWidget) {
-    return AwesomeSlider(
-      value: valueOnTextWidget,
-      min: 0,
-      max: 100,
-      sliderWidth: 250,
-      thumbSize: 30,
-      thumbColor: Colors.grey,
-      roundedRectangleThumbRadius: 30,
-      topLeftShadow: true,
-      topLeftShadowColor: Colors.transparent,
-      topLeftShadowBlur: MaskFilter.blur(BlurStyle.normal, 8),
-      bottomRightShadow: true,
-      bottomRightShadowColor: Colors.black.withOpacity(0.5),
-      bottomRightShadowBlur: MaskFilter.blur(BlurStyle.normal, 7),
-      activeLineStroke: 3,
-      activeLineColor: Colors.grey,
-      inactiveLineColor: Colors.grey,
-      child: Center(
-        child: Container(
-          color: Colors.green[300],
-          height: 20,
-          width: 6,
+  Widget awesomeSlider(double valueOnTextWidget, String title, double width,
+      Function(double) onChanged) {
+    return Row(
+      children: [
+        Container(
+          child: AwesomeSlider(
+            value: valueOnTextWidget,
+            min: 0,
+            max: 100,
+            sliderWidth: width - 100,
+            thumbSize: 30,
+            thumbColor: Colors.grey,
+            roundedRectangleThumbRadius: 30,
+            topLeftShadow: true,
+            topLeftShadowColor: Colors.transparent,
+            topLeftShadowBlur: MaskFilter.blur(BlurStyle.normal, 8),
+            bottomRightShadow: true,
+            bottomRightShadowColor: Colors.black.withOpacity(0.5),
+            bottomRightShadowBlur: MaskFilter.blur(BlurStyle.normal, 7),
+            activeLineStroke: 3,
+            activeLineColor: Colors.grey,
+            inactiveLineColor: Colors.grey,
+            child: Center(
+              child: Container(
+                color: Colors.green[300],
+                height: 20,
+                width: 6,
+              ),
+            ),
+            onChanged: onChanged,
+          ),
         ),
-      ),
-      onChanged: (double value) {
-        setState(() {
-          valueOnTextWidget = value;
-        });
-      },
+        Transform(
+          alignment: FractionalOffset.center,
+          transform: Matrix4.identity()..rotateZ(90 * 3.1415927 / 60),
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
     );
   }
 
