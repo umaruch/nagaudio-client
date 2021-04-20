@@ -11,14 +11,14 @@ class FiltersPage extends StatefulWidget {
 class _FiltersPageState extends State<FiltersPage> {
   int selectedTabIndex = 1;
   String title = '80%';
-  String selectedOutput;
+  String selectedOutput = '1';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Фильтры'),
-        // elevation: 4,
+        // elevation: 5,
       ),
       body: SafeArea(
         child: Column(
@@ -42,7 +42,7 @@ class _FiltersPageState extends State<FiltersPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 70,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -106,7 +106,7 @@ class _FiltersPageState extends State<FiltersPage> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 60,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -24,231 +24,242 @@ class _MixerPageState extends State<MixerPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.arrow_back),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => MenuPage()),
-                          );
-                        },
-                      ),
-                      Text(
-                        'Миксер',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.arrow_back),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MenuPage()),
+                                  );
+                                },
+                              ),
+                              Text(
+                                'Миксер',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
+                      ],
+                    ),
+                    Container(
+                      height: 0,
+                      child: Divider(
+                        color: Colors.black,
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 30,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: isActive == true
+                                  ? Colors.green[300]
+                                  : Colors.grey,
+                            ),
+                            child: TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  isActive = !isActive;
+                                });
+                              },
+                              child: Text(
+                                'Active',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'HD Player',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showEditDialog(context);
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              size: 15,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 100,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'HD-Player',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.volume_up,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                          Expanded(
+                            child: Slider(
+                              value: playerValue,
+                              min: 0,
+                              max: 100,
+                              activeColor: Colors.green[300],
+                              inactiveColor: Colors.grey,
+                              onChanged: (value) {
+                                setState(() {
+                                  playerValue = value;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'S/PDIF-1',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.volume_up,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                          Expanded(
+                            child: Slider(
+                              value: pdifOneValue,
+                              min: 0,
+                              max: 100,
+                              activeColor: Colors.green[300],
+                              inactiveColor: Colors.grey,
+                              onChanged: (value) {
+                                setState(() {
+                                  pdifOneValue = value;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'S/PDIF-2',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.volume_up,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                          Expanded(
+                            child: Slider(
+                              value: pdifTwoValue,
+                              min: 0,
+                              max: 100,
+                              activeColor: Colors.green[300],
+                              inactiveColor: Colors.grey,
+                              onChanged: (value) {
+                                setState(() {
+                                  pdifTwoValue = value;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            Container(
-              height: 0,
-              child: Divider(
-                color: Colors.black,
               ),
             ),
             SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Row(
-                children: [
-                  Container(
-                    height: 30,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: isActive == true ? Colors.green[300] : Colors.grey,
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          isActive = !isActive;
-                        });
-                      },
-                      child: Text(
-                        'Active',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'HD Player',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 7,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      showEditDialog(context);
-                    },
-                    child: Icon(
-                      Icons.edit,
-                      size: 15,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 60,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Row(
-                children: [
-                  Text(
-                    'HD-Player',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Icon(
-                    Icons.volume_up,
-                    color: Colors.white,
-                    size: 25,
-                  ),
-                  Expanded(
-                    child: Slider(
-                      value: playerValue,
-                      min: 0,
-                      max: 100,
-                      activeColor: Colors.green[300],
-                      inactiveColor: Colors.grey,
-                      onChanged: (value) {
-                        setState(() {
-                          playerValue = value;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Row(
-                children: [
-                  Text(
-                    'S/PDIF-1',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Icon(
-                    Icons.volume_up,
-                    color: Colors.white,
-                    size: 25,
-                  ),
-                  Expanded(
-                    child: Slider(
-                      value: pdifOneValue,
-                      min: 0,
-                      max: 100,
-                      activeColor: Colors.green[300],
-                      inactiveColor: Colors.grey,
-                      onChanged: (value) {
-                        setState(() {
-                          pdifOneValue = value;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Row(
-                children: [
-                  Text(
-                    'S/PDIF-2',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Icon(
-                    Icons.volume_up,
-                    color: Colors.white,
-                    size: 25,
-                  ),
-                  Expanded(
-                    child: Slider(
-                      value: pdifTwoValue,
-                      min: 0,
-                      max: 100,
-                      activeColor: Colors.green[300],
-                      inactiveColor: Colors.grey,
-                      onChanged: (value) {
-                        setState(() {
-                          pdifTwoValue = value;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 60,
+              height: 50,
             ),
             Row(
               children: [

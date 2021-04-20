@@ -24,108 +24,110 @@ class _MenuPageState extends State<MenuPage> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 40),
-        child: Column(
-          children: [
-            ListTile(
-              title: Text('Поиск и выбор устройств'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DevicesPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Главный экран'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MainPage(
-                            item: Playlist.stubItems().first,
-                          )),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Меню медиа'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MainPageLibrary()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Сведения об устройстве'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Device item = Device.stubItems().first;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DeviceProperties(
-                      item: item,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListTile(
+                title: Text('Поиск и выбор устройств'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DevicesPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Главный экран'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MainPage(
+                              item: Playlist.stubItems().first,
+                            )),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Меню медиа'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPageLibrary()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Сведения об устройстве'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Device item = Device.stubItems().first;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DeviceProperties(
+                        item: item,
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Настройки сетевого подключения'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => NetworkSettingsPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Просмотр файловой системы'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BrowserPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Миксер'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MixerPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Эквалайзер'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EqualizerPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('Фильтр'),
-              trailing: Icon(Icons.forward),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => FiltersPage()),
-                );
-              },
-            ),
-          ],
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Настройки сетевого подключения'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NetworkSettingsPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Просмотр файловой системы'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BrowserPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Миксер'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MixerPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Эквалайзер'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EqualizerPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Фильтр'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FiltersPage()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
