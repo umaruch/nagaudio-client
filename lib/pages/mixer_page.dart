@@ -11,7 +11,6 @@ class MixerPage extends StatefulWidget {
 }
 
 class _MixerPageState extends State<MixerPage> {
-  int selectedTabIndex = 0;
   int selected = 1;
   bool isActive = true;
   double playerValue = 80;
@@ -376,64 +375,6 @@ class _MixerPageState extends State<MixerPage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: selectedTabIndex,
-        selectedItemColor: Colors.green,
-        elevation: 0,
-        backgroundColor: Colors.grey[900],
-        onTap: (value) {
-          setState(() {
-            selectedTabIndex = value;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_mixer.png'),
-            ),
-            activeIcon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_mixer_active.png'),
-            ),
-            label: 'Миксер',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_filter.png'),
-            ),
-            activeIcon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_filter_active.png'),
-            ),
-            label: 'Фильтры',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_eq.png'),
-            ),
-            activeIcon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_eq_active.png'),
-            ),
-            label: 'Эквалайзер',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_delay.png'),
-            ),
-            activeIcon: Image.asset(
-              'assets/icons/dsp_delay_active.png',
-              height: 30,
-            ),
-            label: 'Задержка',
-          )
-        ],
       ),
     );
   }

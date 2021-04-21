@@ -17,10 +17,11 @@ class _EqualizerPageState extends State<EqualizerPage> {
   double slider4Value = 70;
   double slider5Value = 60;
 
-  int selectedTabIndex = 2;
   String selectedOutput = '1';
+
   double noiseSliderValue = 0;
   double sinSliderValue = 80;
+
   double val = 5;
 
   @override
@@ -89,7 +90,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                       }),
                                       awesomeSlider(
                                           slider2Value,
-                                          '-8.0 db\n2.215\n14 kHz',
+                                          '-8.0 db\n2.215\n3 kHz',
                                           width, (value) {
                                         setState(() {
                                           slider2Value = value;
@@ -97,7 +98,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                       }),
                                       awesomeSlider(
                                           slider3Value,
-                                          '-8.0 db\n2.215\n14 kHz',
+                                          '-8.0 db\n2.215\n910 Hz',
                                           width, (value) {
                                         setState(() {
                                           slider3Value = value;
@@ -105,7 +106,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                       }),
                                       awesomeSlider(
                                           slider4Value,
-                                          '-8.0 db\n2.215\n14 kHz',
+                                          '-8.0 db\n2.215\n230 Hz',
                                           width, (value) {
                                         setState(() {
                                           slider4Value = value;
@@ -113,7 +114,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                       }),
                                       awesomeSlider(
                                           slider5Value,
-                                          '-8.0 db\n2.215\n14 kHz',
+                                          '-8.0 db\n2.215\n60 Hz',
                                           width, (value) {
                                         setState(() {
                                           slider5Value = value;
@@ -212,7 +213,6 @@ class _EqualizerPageState extends State<EqualizerPage> {
           ],
         ),
       ),
-      bottomNavigationBar: buildBottomNavigationBar(),
     );
   }
 
@@ -228,7 +228,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
             sliderWidth: width - 100,
             thumbSize: 30,
             thumbColor: Colors.grey,
-            roundedRectangleThumbRadius: 30,
+            roundedRectangleThumbRadius: 0,
             topLeftShadow: true,
             topLeftShadowColor: Colors.transparent,
             topLeftShadowBlur: MaskFilter.blur(BlurStyle.normal, 8),
@@ -257,70 +257,6 @@ class _EqualizerPageState extends State<EqualizerPage> {
           ),
         ),
       ],
-    );
-  }
-
-  Padding buildBottomNavigationBar() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: selectedTabIndex,
-        selectedItemColor: Colors.green,
-        elevation: 0,
-        backgroundColor: Colors.grey[900],
-        onTap: (value) {
-          setState(() {
-            selectedTabIndex = value;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_mixer.png'),
-            ),
-            activeIcon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_mixer_active.png'),
-            ),
-            label: 'Миксер',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_filter.png'),
-            ),
-            activeIcon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_filter_active.png'),
-            ),
-            label: 'Фильтры',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_eq.png'),
-            ),
-            activeIcon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_eq_active.png'),
-            ),
-            label: 'Эквалайзер',
-          ),
-          BottomNavigationBarItem(
-            icon: Image(
-              height: 30,
-              image: AssetImage('assets/icons/dsp_delay.png'),
-            ),
-            activeIcon: Image.asset(
-              'assets/icons/dsp_delay_active.png',
-              height: 30,
-            ),
-            label: 'Задержка',
-          )
-        ],
-      ),
     );
   }
 
