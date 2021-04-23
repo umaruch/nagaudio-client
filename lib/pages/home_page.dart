@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/pages/equalizer_page.dart';
 import 'package:nagaudio/pages/mixer_page.dart';
-
 import 'filters_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedTabIndex,
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.green[300],
         elevation: 0,
         backgroundColor: Colors.grey[900],
         onTap: (index) {
@@ -45,6 +44,7 @@ class _HomePageState extends State<HomePage> {
               image: AssetImage('assets/icons/dsp_mixer.png'),
             ),
             activeIcon: Image(
+              color: Colors.green[300],
               height: 30,
               image: AssetImage('assets/icons/dsp_mixer_active.png'),
             ),
@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
               image: AssetImage('assets/icons/dsp_filter.png'),
             ),
             activeIcon: Image(
+              color: Colors.green[300],
               height: 30,
               image: AssetImage('assets/icons/dsp_filter_active.png'),
             ),
@@ -67,6 +68,7 @@ class _HomePageState extends State<HomePage> {
               image: AssetImage('assets/icons/dsp_eq.png'),
             ),
             activeIcon: Image(
+              color: Colors.green[300],
               height: 30,
               image: AssetImage('assets/icons/dsp_eq_active.png'),
             ),
@@ -77,8 +79,9 @@ class _HomePageState extends State<HomePage> {
               height: 30,
               image: AssetImage('assets/icons/dsp_delay.png'),
             ),
-            activeIcon: Image.asset(
-              'assets/icons/dsp_delay_active.png',
+            activeIcon: Image(
+              color: Colors.green[300],
+              image: AssetImage('assets/icons/dsp_delay_active.png'),
               height: 30,
             ),
             label: 'Задержка',

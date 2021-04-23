@@ -37,7 +37,9 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       child: Container(
                         height: 20,
                         width: 20,
