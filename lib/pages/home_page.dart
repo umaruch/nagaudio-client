@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/pages/delay_page.dart';
 import 'package:nagaudio/pages/equalizer_page.dart';
 import 'package:nagaudio/pages/mixer_page.dart';
 import 'filters_page.dart';
@@ -11,7 +12,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final pages = [MixerPage(), FiltersPage(), EqualizerPage(), Container()];
+  final pages = [
+    MixerPage(),
+    FiltersPage(),
+    EqualizerPage(),
+    DelayPage(),
+  ]; //Container()];
 
   int selectedTabIndex = 0;
 
@@ -85,7 +91,7 @@ class _HomePageState extends State<HomePage> {
               height: 30,
             ),
             label: 'Задержка',
-          )
+          ),
         ],
       ),
     );

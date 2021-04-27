@@ -1,5 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_button/flutter_button.dart';
 import 'package:nagaudio/widgets/output_widget.dart';
 import 'package:awesome_slider/awesome_slider.dart';
 
@@ -22,7 +23,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
   double noiseSliderValue = 0;
   double sinSliderValue = 80;
 
-  double val = 5;
+  bool select = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +42,17 @@ class _EqualizerPageState extends State<EqualizerPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildVoiceButton('Phase'),
+                    buildVoiceButton('Phase', (onPressed) {
+                      setState(() {
+                        select = !select;
+                      });
+                    }),
                     buildOutputButton(),
-                    buildVoiceButton('Mute'),
+                    buildVoiceButton('Mute', (onPressed) {
+                      setState(() {
+                        select = !select;
+                      });
+                    }),
                   ],
                 ),
               ),
@@ -129,18 +138,43 @@ class _EqualizerPageState extends State<EqualizerPage> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          buildVoiceButton('Reset'),
-                          buildVoiceButton('Bypass'),
+                          buildVoiceButton('Reset', (onPressed) {
+                            setState(() {
+                              select = !select;
+                            });
+                          }),
+                          buildVoiceButton('Bypass', (onPressed) {
+                            setState(() {
+                              select = !select;
+                            });
+                          }),
                         ],
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      // height: 10,
+                      height: 170,
+                    ),
+                    LikeButton(
+                      icon: Icons.home,
+                      activeColor: Colors.green,
+                      deactiveColor: Colors.red,
+                      onTap: () {},
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    HoverButton(
+                      title: 'reset',
+                      onTap: () {},
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -229,10 +263,10 @@ class _EqualizerPageState extends State<EqualizerPage> {
             thumbSize: 30,
             thumbColor: Colors.grey,
             roundedRectangleThumbRadius: 0,
-            topLeftShadow: true,
+            topLeftShadow: false,
             topLeftShadowColor: Colors.transparent,
             topLeftShadowBlur: MaskFilter.blur(BlurStyle.normal, 8),
-            bottomRightShadow: true,
+            bottomRightShadow: false,
             bottomRightShadowColor: Colors.black.withOpacity(0.5),
             bottomRightShadowBlur: MaskFilter.blur(BlurStyle.normal, 7),
             activeLineStroke: 3,
@@ -420,19 +454,25 @@ class _EqualizerPageState extends State<EqualizerPage> {
     );
   }
 
-  Container buildVoiceButton(String title) {
+  Widget buildVoiceButton(String title, Function(bool) onChanged) {
     return Container(
-      height: 30,
+      height: 31,
       width: 90,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: Colors.grey,
-      ),
-      child: Center(
-        child: Text(
-          title,
-          style: TextStyle(
-            color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          color: select == true ? Colors.grey : Colors.green[300]),
+      child: TextButton(
+        onPressed: () {
+          setState(() {
+            select = !select;
+          });
+        },
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
       ),

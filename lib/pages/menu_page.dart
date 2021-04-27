@@ -9,6 +9,7 @@ import 'package:nagaudio/pages/main_page.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
 
 import 'package:nagaudio/pages/network_settings_page.dart';
+import 'package:nagaudio/pages/playlist_page.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
@@ -102,6 +103,20 @@ class _MenuPageState extends State<MenuPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Playlist'),
+                trailing: Icon(Icons.forward),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlaylistPage(
+                        item: Playlist.stubItems().first,
+                      ),
+                    ),
                   );
                 },
               ),

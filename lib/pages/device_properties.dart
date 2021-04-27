@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nagaudio/models/device.dart';
 
@@ -10,8 +11,28 @@ class DeviceProperties extends StatefulWidget {
   _DevicePropertiesState createState() => _DevicePropertiesState();
 }
 
-class _DevicePropertiesState extends State<DeviceProperties> {
+class _DevicePropertiesState extends State<DeviceProperties>
+    with TickerProviderStateMixin {
+  AnimationController controller;
+
   @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     Device item = widget.item;
     return Scaffold(
@@ -170,18 +191,35 @@ class _DevicePropertiesState extends State<DeviceProperties> {
                 padding: const EdgeInsets.only(left: 12),
                 child: Row(
                   children: [
-                    Container(
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey,
-                      ),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Перезагрузить устройство',
-                          style: TextStyle(
-                            color: Colors.white,
+                    InkWell(
+                      onTap: () {
+                        CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.yellow),
+                        );
+                      },
+                      child: Container(
+                        height: 35,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.grey,
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                LinearProgressIndicator(
+                                  value: controller.value,
+                                  semanticsLabel: 'Linear progress indicator',
+                                );
+                              },
+                            );
+                          },
+                          child: Text(
+                            'Перезагрузить устройство',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
