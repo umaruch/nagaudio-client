@@ -460,7 +460,7 @@ class _MainPageState extends State<MainPage> {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: Colors.grey[850],
               ),
-              height: 220,
+              height: 190,
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(

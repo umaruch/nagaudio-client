@@ -107,7 +107,7 @@ class _MenuPageState extends State<MenuPage> {
                 },
               ),
               ListTile(
-                title: Text('Playlist'),
+                title: Text('Просмотр плейлиста'),
                 trailing: Icon(Icons.forward),
                 onTap: () {
                   Navigator.push(
