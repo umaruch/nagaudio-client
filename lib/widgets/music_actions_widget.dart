@@ -14,7 +14,6 @@ class MusicActionsWidget extends StatelessWidget {
           onPressed: () {},
           icon: Icon(
             Icons.skip_previous,
-            color: Colors.white,
             size: 80,
           ),
         ),
@@ -22,7 +21,6 @@ class MusicActionsWidget extends StatelessWidget {
           onPressed: () {},
           icon: Icon(
             Icons.play_arrow,
-            color: Colors.white,
             size: 80,
           ),
         ),
@@ -30,7 +28,6 @@ class MusicActionsWidget extends StatelessWidget {
           onPressed: () {},
           icon: Icon(
             Icons.skip_next,
-            color: Colors.white,
             size: 80,
           ),
         ),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:nagaudio/widgets/output_widget.dart';
+
+import '../widgets/radio_sheet_widget.dart';
 
 class FiltersPage extends StatefulWidget {
   FiltersPage({Key key}) : super(key: key);
@@ -11,6 +14,23 @@ class FiltersPage extends StatefulWidget {
 class _FiltersPageState extends State<FiltersPage> {
   String title = '80%';
   String selectedOutput = '1';
+
+  var selectedInputItem;
+  final inputItemsBessel = [
+    'Bessel',
+    'Link-Ril',
+    'Butter-W',
+  ];
+
+  var selectedInputScore;
+  final inputItemsScores = [
+    '12',
+    '18',
+    '24',
+    '30',
+    '36',
+    '42',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -111,10 +131,153 @@ class _FiltersPageState extends State<FiltersPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         children: [
-                          Text(
-                            'HPF',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                          InkWell(
+                            onTap: () {
+                              showMaterialModalBottomSheet(
+                                context: context,
+                                backgroundColor: Colors.transparent,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ), //this right here
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        color: Colors.grey[850],
+                                      ),
+                                      height: 120,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'HPF',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Flexible(
+                                                  child: Icon(
+                                                    Icons.arrow_back_ios,
+                                                    size: 25,
+                                                  ),
+                                                ),
+                                                Flexible(
+                                                  child: Container(
+                                                    height: 30,
+                                                    width: 100,
+                                                    child: TextField(
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 5,
+                                                                horizontal: 5),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .grey[900],
+                                                          ),
+                                                        ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .grey[900],
+                                                          ),
+                                                        ),
+                                                        filled: true,
+                                                        hintText: '10',
+                                                        hintStyle: TextStyle(
+                                                            color: Colors.grey),
+                                                        fillColor:
+                                                            Colors.grey[900],
+                                                      ),
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Flexible(
+                                                  child: Icon(
+                                                    Icons.arrow_forward_ios,
+                                                    size: 25,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                    child: Text(
+                                                      'Отмена',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                    child: Text(
+                                                      'Сохранить',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Text(
+                              'HPF',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
@@ -127,9 +290,31 @@ class _FiltersPageState extends State<FiltersPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            buildPhaseButton('Bessel'),
+                            InkWell(
+                                onTap: () {
+                                  RadioSheetWidget(
+                                    title: 'Тип фильтра',
+                                    items: inputItemsBessel,
+                                    selectedItem: selectedInputItem,
+                                    onChanged: (value) {
+                                      selectedInputItem = value;
+                                    },
+                                  ).show(context);
+                                },
+                                child: buildPhaseButton('Bessel')),
                             buildPhaseButton('10 Hz'),
-                            buildPhaseButton('12 db/Oct'),
+                            InkWell(
+                                onTap: () {
+                                  RadioSheetWidget(
+                                    title: 'db/Oct',
+                                    items: inputItemsScores,
+                                    selectedItem: selectedInputScore,
+                                    onChanged: (value) {
+                                      selectedInputItem = value;
+                                    },
+                                  ).show(context);
+                                },
+                                child: buildPhaseButton('12 db/Oct')),
                           ],
                         ),
                       ),

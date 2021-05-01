@@ -1,13 +1,19 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:nagaudio/models/menu_item.dart';
 import 'package:nagaudio/models/playlist.dart';
-import 'package:nagaudio/pages/radio_page.dart';
+import 'package:nagaudio/widgets/alert_textfield_widget.dart';
+import 'package:nagaudio/widgets/radio_sheet_widget.dart';
 import 'package:nagaudio/widgets/bottom_actions_widget.dart';
 import 'package:nagaudio/widgets/duration_widget.dart';
+import 'package:nagaudio/widgets/alert_menu_widget.dart';
 import 'package:nagaudio/widgets/music_actions_widget.dart';
 import 'package:nagaudio/widgets/music_slider_widget.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
+// import '../models/menu_item.dart';
+// import '../models/menu_item.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.item}) : super(key: key);
@@ -32,6 +38,37 @@ class _MainPageState extends State<MainPage> {
   // Song currentItem = Song('God\'s Favorite Customer', 'Father john Misty');
 
   // List<Song> items = Song.stubItems();
+
+  final playlistItems = Playlist.stubItems()
+      .map((e) => MenuItem(
+            e.name,
+            Icons.playlist_play,
+          ))
+      .toList();
+
+  var selectedInputItem = 'HD Player';
+  final inputItems = [
+    'HD Player',
+    'S/PDIF-1',
+    'S/PDIF-2',
+  ];
+
+  var selectedDeviceNameItem;
+  final deviceNameItems = [
+    MenuItem('Сведения об устройстве', Icons.wifi),
+    MenuItem('Настройки сети', Icons.wifi),
+    MenuItem('ЦАП Фильтры', Icons.wifi),
+    MenuItem('Сменить устройство', Icons.logout),
+  ];
+
+  var selectedFilterItem = 'Sharp Roll-Off';
+  final filterItems = [
+    'Sharp Roll-Off',
+    'Slow Roll-Off',
+    'Short Delay Sharp Roll-Off',
+    'Short Delay Slow Roll-Off Filter',
+    'Super Slow Roll-Off Filter',
+  ];
 
   @override
   void initState() {
@@ -99,7 +136,13 @@ class _MainPageState extends State<MainPage> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      return buildShowNextDialog(context);
+                                      AlertMenuWidget(
+                                        title: 'Добавить в плейлист',
+                                        items: playlistItems,
+                                        onSelected: (value) {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ).show(context);
                                     },
                                   ),
                                 ),
@@ -161,149 +204,17 @@ class _MainPageState extends State<MainPage> {
                                               color: Colors.grey,
                                             ),
                                             onPressed: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return Dialog(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ), //this right here
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    10)),
-                                                        color: Colors.grey[850],
-                                                      ),
-                                                      height: 120,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(10),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Создать плейлист',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              height: 10,
-                                                            ),
-                                                            Container(
-                                                              height: 30,
-                                                              child: TextField(
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  contentPadding:
-                                                                      const EdgeInsets
-                                                                              .symmetric(
-                                                                          vertical:
-                                                                              8),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                              .grey[
-                                                                          800],
-                                                                    ),
-                                                                  ),
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                              .grey[
-                                                                          800],
-                                                                    ),
-                                                                  ),
-                                                                  filled: true,
-                                                                  hintText: '',
-                                                                  hintStyle: TextStyle(
-                                                                      color: Colors
-                                                                          .white),
-                                                                  fillColor:
-                                                                      Colors.grey[
-                                                                          800],
-                                                                ),
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              height: 15,
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceAround,
-                                                              children: [
-                                                                InkWell(
-                                                                  onTap: () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    child: Text(
-                                                                      'Отмена',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        fontSize:
-                                                                            18,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                InkWell(
-                                                                  onTap: () {},
-                                                                  child:
-                                                                      Container(
-                                                                    child: Text(
-                                                                      'Сохранить',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey,
-                                                                        fontSize:
-                                                                            18,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
+                                              AlertTextfieldWidget(
+                                                title: 'Создать плейлист',
+                                                text: '',
+                                                hint: '',
+                                                onCancel: () {
+                                                  Navigator.of(context).pop();
                                                 },
-                                              );
+                                                onSave: (value) {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ).show(context);
                                             },
                                           ),
                                         ],
@@ -387,51 +298,35 @@ class _MainPageState extends State<MainPage> {
                   // ));
                   switch (index) {
                     case 0:
-                      showMaterialModalBottomSheet(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => RadioPage(
-                          title: 'Выберите вход',
-                          items: ['HD Player', 'S/PDIF-1', 'S/PDIF-2'],
-                          selectedIndex: 0,
-                        ),
-                      );
+                      RadioSheetWidget(
+                        title: 'Выберите вход',
+                        items: inputItems,
+                        selectedItem: selectedInputItem,
+                        onChanged: (value) {
+                          selectedInputItem = value;
+                        },
+                      ).show(context);
                       break;
                     case 1:
-                      showMaterialModalBottomSheet(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => RadioPage(
-                          title: 'DeviceName',
-                          items: [
-                            'Сведения об устройстве',
-                            'Настройки сети',
-                            'ЦАП Фильтры',
-                            'Сменить устройство'
-                          ],
-                          selectedIndex: 0,
-                        ),
-                      );
                       break;
                     case 2:
-                      showMaterialModalBottomSheet(
-                        context: context,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => RadioPage(
-                          title: 'ЦАП Фильтр',
-                          items: [
-                            'Sharp Roll-Off',
-                            'Slow Roll-Off',
-                            'Short Delay Sharp Roll-Off',
-                            'Short Delay Slow Roll-Off Filter',
-                            'Super Slow Roll-Off Filter',
-                          ],
-                          selectedIndex: 0,
-                        ),
-                      );
+                      RadioSheetWidget(
+                        title: 'ЦАП Фильтр',
+                        items: filterItems,
+                        selectedItem: selectedFilterItem,
+                        onChanged: (value) {
+                          selectedFilterItem = value;
+                        },
+                      ).show(context);
                       break;
-
-                    case 4:
+                    case 3:
+                      AlertMenuWidget(
+                        title: 'DeviceName',
+                        items: deviceNameItems,
+                        onSelected: (value) {
+                          Navigator.of(context).pop();
+                        },
+                      ).show(context);
                       break;
                     default:
                   }
@@ -441,116 +336,6 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Future buildShowNextDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: EdgeInsets.only(bottom: 50),
-          child: Dialog(
-            backgroundColor: Colors.grey[850],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ), //this right here
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Colors.grey[850],
-              ),
-              height: 190,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Text(
-                                  'Добавить в плейлист',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.playlist_play),
-                                color: Colors.grey,
-                                iconSize: 25,
-                                onPressed: () {},
-                              ),
-                              Text(
-                                'Аква-дискотека',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.playlist_play),
-                          color: Colors.grey,
-                          iconSize: 25,
-                          onPressed: () {},
-                        ),
-                        Text(
-                          'Комната грязи',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.playlist_play),
-                            color: Colors.grey,
-                            iconSize: 25,
-                            onPressed: null,
-                          ),
-                          Text(
-                            'Дворец в Италии',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }
