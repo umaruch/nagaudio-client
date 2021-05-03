@@ -1,6 +1,5 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_button/flutter_button.dart';
 import 'package:nagaudio/widgets/output_widget.dart';
 import 'package:awesome_slider/awesome_slider.dart';
 
@@ -23,7 +22,10 @@ class _EqualizerPageState extends State<EqualizerPage> {
   double noiseSliderValue = 0;
   double sinSliderValue = 80;
 
-  bool select = true;
+  bool select1 = true;
+  bool select2 = true;
+  bool select3 = true;
+  bool select4 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +44,15 @@ class _EqualizerPageState extends State<EqualizerPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildVoiceButton('Phase', (onPressed) {
+                    buildVoiceButton('Phase', select1, () {
                       setState(() {
-                        select = !select;
+                        select1 = !select1;
                       });
                     }),
                     buildOutputButton(),
-                    buildVoiceButton('Mute', (onPressed) {
+                    buildVoiceButton('Mute', select2, () {
                       setState(() {
-                        select = !select;
+                        select2 = !select2;
                       });
                     }),
                   ],
@@ -146,14 +148,14 @@ class _EqualizerPageState extends State<EqualizerPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          buildVoiceButton('Reset', (onPressed) {
+                          buildVoiceButton('Reset', select3, () {
                             setState(() {
-                              select = !select;
+                              select3 = !select3;
                             });
                           }),
-                          buildVoiceButton('Bypass', (onPressed) {
+                          buildVoiceButton('Bypass', select4, () {
                             setState(() {
-                              select = !select;
+                              select4 = !select4;
                             });
                           }),
                         ],
@@ -161,20 +163,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                     ),
                     SizedBox(
                       // height: 10,
-                      height: 170,
-                    ),
-                    LikeButton(
-                      icon: Icons.home,
-                      activeColor: Colors.green,
-                      deactiveColor: Colors.red,
-                      onTap: () {},
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    HoverButton(
-                      title: 'reset',
-                      onTap: () {},
+                      height: 80,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -454,18 +443,16 @@ class _EqualizerPageState extends State<EqualizerPage> {
     );
   }
 
-  Widget buildVoiceButton(String title, Function(bool) onChanged) {
+  Widget buildVoiceButton(String title, bool selected, Function onChanged) {
     return Container(
       height: 31,
       width: 90,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: select == true ? Colors.grey : Colors.green[300]),
+          color: selected == true ? Colors.grey : Colors.green[300]),
       child: TextButton(
         onPressed: () {
-          setState(() {
-            select = !select;
-          });
+          onChanged();
         },
         child: Center(
           child: Text(

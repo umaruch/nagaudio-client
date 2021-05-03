@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:nagaudio/widgets/alert_textfield_widget.dart';
 import 'package:nagaudio/widgets/output_widget.dart';
 
 import '../widgets/radio_sheet_widget.dart';
@@ -390,105 +391,17 @@ class _FiltersPageState extends State<FiltersPage> {
             ),
             InkWell(
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Dialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ), //this right here
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.grey[850],
-                        ),
-                        height: 120,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Имя выхода',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Container(
-                                height: 30,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 5),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.grey[800],
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.grey[800],
-                                      ),
-                                    ),
-                                    filled: true,
-                                    hintText: 'Текущее имя',
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    fillColor: Colors.grey[800],
-                                  ),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Container(
-                                      child: Text(
-                                        'Отмена',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      child: Text(
-                                        'Сохранить',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+                AlertTextfieldWidget(
+                  title: 'Имя выхода',
+                  text: '',
+                  hint: 'Текущее имя',
+                  onCancel: () {
+                    Navigator.of(context).pop();
                   },
-                );
+                  onSave: (value) {
+                    Navigator.of(context).pop();
+                  },
+                ).show(context);
               },
               child: Icon(
                 Icons.edit,

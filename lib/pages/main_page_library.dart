@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nagaudio/models/menu_item.dart';
 import 'package:nagaudio/models/playlist.dart';
 import 'package:nagaudio/pages/browser_page.dart';
 import 'package:nagaudio/pages/main_page.dart';
+import 'package:nagaudio/widgets/alert_menu_widget.dart';
 
 class MainPageLibrary extends StatefulWidget {
   MainPageLibrary({Key key}) : super(key: key);
@@ -12,6 +14,14 @@ class MainPageLibrary extends StatefulWidget {
 
 class _MainPageLibraryState extends State<MainPageLibrary> {
   List<Playlist> items = Playlist.stubItems();
+
+  final playlistItems = Playlist.stubItems()
+      .map((e) => MenuItem(
+            e.name,
+            Icons.playlist_play,
+          ))
+      .toList();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +161,13 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                       ),
                     ),
                     onTap: () {
-                      showPlaylistDialog(context);
+                      AlertMenuWidget(
+                        title: '',
+                        items: playlistItems,
+                        onSelected: (value) {
+                          Navigator.of(context).pop();
+                        },
+                      ).show(context);
                     },
                   );
                 },

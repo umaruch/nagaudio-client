@@ -10,23 +10,23 @@ class MusicActionsWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
+        InkWell(
+          onTap: () {},
+          child: Icon(
             Icons.skip_previous,
             size: 80,
           ),
         ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
+        InkWell(
+          onTap: () {},
+          child: Icon(
             Icons.play_arrow,
             size: 80,
           ),
         ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
+        InkWell(
+          onTap: () {},
+          child: Icon(
             Icons.skip_next,
             size: 80,
           ),

@@ -278,11 +278,11 @@ class _MainPageState extends State<MainPage> {
               timeLeft: timeLeft,
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 45),
+              padding: const EdgeInsets.only(top: 10),
               child: MusicActionsWidget(),
             ),
             SizedBox(
-              height: 50,
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 25, right: 25),
