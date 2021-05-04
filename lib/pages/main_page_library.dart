@@ -4,6 +4,7 @@ import 'package:nagaudio/models/playlist.dart';
 import 'package:nagaudio/pages/browser_page.dart';
 import 'package:nagaudio/pages/main_page.dart';
 import 'package:nagaudio/widgets/alert_menu_widget.dart';
+import 'package:nagaudio/widgets/alert_textfield_widget.dart';
 
 class MainPageLibrary extends StatefulWidget {
   MainPageLibrary({Key key}) : super(key: key);
@@ -14,13 +15,6 @@ class MainPageLibrary extends StatefulWidget {
 
 class _MainPageLibraryState extends State<MainPageLibrary> {
   List<Playlist> items = Playlist.stubItems();
-
-  final playlistItems = Playlist.stubItems()
-      .map((e) => MenuItem(
-            e.name,
-            Icons.playlist_play,
-          ))
-      .toList();
 
   @override
   Widget build(BuildContext context) {
@@ -161,11 +155,41 @@ class _MainPageLibraryState extends State<MainPageLibrary> {
                       ),
                     ),
                     onTap: () {
+                      final menuItems = [
+                        MenuItem('Воспроизвести', Icons.playlist_add),
+                        MenuItem('Добавить в очередь', Icons.add),
+                        MenuItem('Переименовать', Icons.edit),
+                        MenuItem('Удалить', Icons.delete),
+                      ];
                       AlertMenuWidget(
-                        title: '',
-                        items: playlistItems,
+                        title: null,
+                        items: menuItems,
                         onSelected: (value) {
                           Navigator.of(context).pop();
+                          final index = menuItems.indexOf(value);
+                          switch (index) {
+                            case 0:
+                              break;
+                            case 1:
+                              break;
+                            case 2:
+                              AlertTextfieldWidget(
+                                title: 'Переименовать плейлист',
+                                text: '',
+                                hint: 'Имя плейлиста',
+                                onCancel: () {
+                                  Navigator.of(context).pop();
+                                },
+                                onSave: (value) {
+                                  Navigator.of(context).pop();
+                                },
+                              ).show(context);
+                              break;
+                            case 3:
+                              showRemoveDialog(context);
+                              break;
+                            default:
+                          }
                         },
                       ).show(context);
                     },

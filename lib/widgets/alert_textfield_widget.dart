@@ -108,9 +108,9 @@ class AlertTextfieldWidget extends StatelessWidget {
   }
 
   show(BuildContext context) {
-    showMaterialModalBottomSheet(
+    showDialog(
       context: context,
-      backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       builder: (context) => this,
     );
   }

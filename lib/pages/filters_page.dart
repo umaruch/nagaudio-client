@@ -16,14 +16,14 @@ class _FiltersPageState extends State<FiltersPage> {
   String title = '80%';
   String selectedOutput = '1';
 
-  var selectedInputItem;
+  var selectedInputItem = 'Bessel';
   final inputItemsBessel = [
     'Bessel',
     'Link-Ril',
     'Butter-W',
   ];
 
-  var selectedInputScore;
+  var selectedInputScore = '12';
   final inputItemsScores = [
     '12',
     '18',
@@ -134,9 +134,9 @@ class _FiltersPageState extends State<FiltersPage> {
                         children: [
                           InkWell(
                             onTap: () {
-                              showMaterialModalBottomSheet(
+                              showDialog(
                                 context: context,
-                                backgroundColor: Colors.transparent,
+                                // backgroundColor: Colors.transparent,
                                 builder: (BuildContext context) {
                                   return Dialog(
                                     shape: RoundedRectangleBorder(

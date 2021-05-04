@@ -28,10 +28,10 @@ class AlertMenuWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            // SizedBox(height: 10),
             if (title != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                 child: Text(
                   title,
                   style: TextStyle(
@@ -64,9 +64,9 @@ class AlertMenuWidget extends StatelessWidget {
   }
 
   show(BuildContext context) {
-    showMaterialModalBottomSheet(
+    showDialog(
       context: context,
-      backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       builder: (context) => this,
     );
   }

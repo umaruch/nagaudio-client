@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nagaudio/pages/menu_page.dart';
+import 'package:nagaudio/widgets/alert_textfield_widget.dart';
 
 class MixerPage extends StatefulWidget {
   MixerPage({
@@ -107,7 +108,17 @@ class _MixerPageState extends State<MixerPage> {
                           ),
                           InkWell(
                             onTap: () {
-                              showEditDialog(context);
+                              AlertTextfieldWidget(
+                                title: 'Имя пресета',
+                                text: '',
+                                hint: 'Текущее имя',
+                                onCancel: () {
+                                  Navigator.of(context).pop();
+                                },
+                                onSave: (value) {
+                                  Navigator.of(context).pop();
+                                },
+                              ).show(context);
                             },
                             child: Icon(
                               Icons.edit,

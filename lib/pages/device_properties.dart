@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nagaudio/models/device.dart';
+import 'package:nagaudio/widgets/alert_textfield_widget.dart';
 
 class DeviceProperties extends StatefulWidget {
   DeviceProperties({Key key, this.item}) : super(key: key);
@@ -92,7 +93,17 @@ class _DevicePropertiesState extends State<DeviceProperties>
                             ),
                             InkWell(
                               onTap: () {
-                                showEditNameDialog(context);
+                                AlertTextfieldWidget(
+                                  title: 'Имя устройства',
+                                  text: '',
+                                  hint: 'Текущее имя',
+                                  onCancel: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  onSave: (value) {
+                                    Navigator.of(context).pop();
+                                  },
+                                ).show(context);
                               },
                               child: Icon(
                                 Icons.edit,

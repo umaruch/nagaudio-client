@@ -39,13 +39,6 @@ class _MainPageState extends State<MainPage> {
 
   // List<Song> items = Song.stubItems();
 
-  final playlistItems = Playlist.stubItems()
-      .map((e) => MenuItem(
-            e.name,
-            Icons.playlist_play,
-          ))
-      .toList();
-
   var selectedInputItem = 'HD Player';
   final inputItems = [
     'HD Player',
@@ -136,6 +129,12 @@ class _MainPageState extends State<MainPage> {
                                       size: 30,
                                     ),
                                     onPressed: () {
+                                      final playlistItems = Playlist.stubItems()
+                                          .map((e) => MenuItem(
+                                                e.name,
+                                                Icons.playlist_play,
+                                              ))
+                                          .toList();
                                       AlertMenuWidget(
                                         title: 'Добавить в плейлист',
                                         items: playlistItems,
