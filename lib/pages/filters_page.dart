@@ -33,6 +33,9 @@ class _FiltersPageState extends State<FiltersPage> {
     '42',
   ];
 
+  bool select1 = true;
+  bool select2 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +57,17 @@ class _FiltersPageState extends State<FiltersPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            buildPhaseButton('Phase'),
+                            buildVoiceButton('Phase', select1, () {
+                              setState(() {
+                                select1 = !select1;
+                              });
+                            }),
                             buildOutputButton(),
-                            buildPhaseButton('Mute'),
+                            buildVoiceButton('Mute', select2, () {
+                              setState(() {
+                                select2 = !select2;
+                              });
+                            }),
                           ],
                         ),
                       ),
@@ -415,9 +426,9 @@ class _FiltersPageState extends State<FiltersPage> {
     );
   }
 
-  Container buildPhaseButton(String title) {
+  Widget buildPhaseButton(String title) {
     return Container(
-      height: 30,
+      height: 31,
       width: 90,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -433,4 +444,27 @@ class _FiltersPageState extends State<FiltersPage> {
       ),
     );
   }
+}
+
+Widget buildVoiceButton(String title, bool selected, Function onChanged) {
+  return Container(
+    height: 31,
+    width: 90,
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: selected == true ? Colors.grey : Colors.green[300]),
+    child: TextButton(
+      onPressed: () {
+        onChanged();
+      },
+      child: Center(
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ),
+  );
 }

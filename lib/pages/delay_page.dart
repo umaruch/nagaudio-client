@@ -14,6 +14,10 @@ class _DelayPageState extends State<DelayPage> {
   String cm = '351.1 cm';
   String inch = '139.4 inch';
   String selectedOutput = '1';
+
+  bool select1 = true;
+  bool select2 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +39,17 @@ class _DelayPageState extends State<DelayPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            buildPhaseButton('Phase'),
+                            buildPhaseButton('Phase', select1, () {
+                              setState(() {
+                                select1 = !select1;
+                              });
+                            }),
                             buildOutputButton(),
-                            buildPhaseButton('Mute'),
+                            buildPhaseButton('Mute', select2, () {
+                              setState(() {
+                                select2 = !select2;
+                              });
+                            }),
                           ],
                         ),
                       ),
@@ -181,19 +193,23 @@ class _DelayPageState extends State<DelayPage> {
     );
   }
 
-  Container buildPhaseButton(String title) {
+  Widget buildPhaseButton(String title, bool selected, Function onChanged) {
     return Container(
-      height: 30,
+      height: 31,
       width: 90,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: Colors.grey,
-      ),
-      child: Center(
-        child: Text(
-          title,
-          style: TextStyle(
-            color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          color: selected == true ? Colors.grey : Colors.green[300]),
+      child: TextButton(
+        onPressed: () {
+          onChanged();
+        },
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
       ),
