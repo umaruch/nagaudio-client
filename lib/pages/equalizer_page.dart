@@ -1,8 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:nagaudio/widgets/alert_textfield_widget.dart';
 import 'package:nagaudio/widgets/output_widget.dart';
-import 'package:awesome_slider/awesome_slider.dart';
 
 class EqualizerPage extends StatefulWidget {
   EqualizerPage({Key key}) : super(key: key);
@@ -12,7 +12,7 @@ class EqualizerPage extends StatefulWidget {
 }
 
 class _EqualizerPageState extends State<EqualizerPage> {
-  double slider1Value = 80;
+  double slider1Value = 30;
   double slider2Value = 20;
   double slider3Value = 55;
   double slider4Value = 70;
@@ -79,63 +79,58 @@ class _EqualizerPageState extends State<EqualizerPage> {
                           ),
                         ),
                         Positioned(
-                          child: Transform(
-                            alignment: FractionalOffset.center,
-                            transform: Matrix4.identity()
-                              ..rotateZ(90 * 3.1415927 / 180),
-                            child: Container(
-                              width: width,
-                              height: width,
-                              child: Row(
-                                children: [
-                                  Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      awesomeSlider(
-                                          slider1Value,
-                                          '-8.0 db\n2.215\n14 kHz',
-                                          width, (value) {
-                                        setState(() {
-                                          slider1Value = value;
-                                        });
-                                      }),
-                                      awesomeSlider(
-                                          slider2Value,
-                                          '-8.0 db\n2.215\n3 kHz',
-                                          width, (value) {
-                                        setState(() {
-                                          slider2Value = value;
-                                        });
-                                      }),
-                                      awesomeSlider(
-                                          slider3Value,
-                                          '-8.0 db\n2.215\n910 Hz',
-                                          width, (value) {
-                                        setState(() {
-                                          slider3Value = value;
-                                        });
-                                      }),
-                                      awesomeSlider(
-                                          slider4Value,
-                                          '-8.0 db\n2.215\n230 Hz',
-                                          width, (value) {
-                                        setState(() {
-                                          slider4Value = value;
-                                        });
-                                      }),
-                                      awesomeSlider(
-                                          slider5Value,
-                                          '-8.0 db\n2.215\n60 Hz',
-                                          width, (value) {
-                                        setState(() {
-                                          slider5Value = value;
-                                        });
-                                      }),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                          child: Container(
+                            width: width,
+                            height: width,
+                            child: Row(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    awesomeSlider(
+                                        slider1Value,
+                                        '-8.0 db\n2.215\n14 kHz',
+                                        width, (value) {
+                                      setState(() {
+                                        slider1Value = value;
+                                      });
+                                    }),
+                                    awesomeSlider(
+                                        slider2Value,
+                                        '-8.0 db\n2.215\n3 kHz',
+                                        width, (value) {
+                                      setState(() {
+                                        slider2Value = value;
+                                      });
+                                    }),
+                                    awesomeSlider(
+                                        slider3Value,
+                                        '-8.0 db\n2.215\n910 Hz',
+                                        width, (value) {
+                                      setState(() {
+                                        slider3Value = value;
+                                      });
+                                    }),
+                                    awesomeSlider(
+                                        slider4Value,
+                                        '-8.0 db\n2.215\n230 Hz',
+                                        width, (value) {
+                                      setState(() {
+                                        slider4Value = value;
+                                      });
+                                    }),
+                                    awesomeSlider(
+                                        slider5Value,
+                                        '-8.0 db\n2.215\n60 Hz',
+                                        width, (value) {
+                                      setState(() {
+                                        slider5Value = value;
+                                      });
+                                    }),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -240,45 +235,69 @@ class _EqualizerPageState extends State<EqualizerPage> {
     );
   }
 
-  Widget awesomeSlider(double valueOnTextWidget, String title, double width,
-      Function(double) onChanged) {
-    return Row(
+  Widget awesomeSlider(
+      double value, String title, double width, Function(double) onChanged) {
+    return Column(
       children: [
-        Container(
-          child: AwesomeSlider(
-            value: valueOnTextWidget,
-            min: 0,
+        SizedBox(
+          height: 280,
+          width: width / 5,
+          child: FlutterSlider(
+            tooltip:
+                FlutterSliderTooltip(alwaysShowTooltip: false, disabled: true),
+            handlerHeight: 34,
+            handlerWidth: 44,
+            axis: Axis.vertical,
+            values: [value],
+            rangeSlider: false,
             max: 100,
-            sliderWidth: width - 100,
-            thumbSize: 30,
-            thumbColor: Colors.grey,
-            roundedRectangleThumbRadius: 0,
-            topLeftShadow: false,
-            topLeftShadowColor: Colors.transparent,
-            topLeftShadowBlur: MaskFilter.blur(BlurStyle.normal, 8),
-            bottomRightShadow: false,
-            bottomRightShadowColor: Colors.black.withOpacity(0.5),
-            bottomRightShadowBlur: MaskFilter.blur(BlurStyle.normal, 7),
-            activeLineStroke: 3,
-            activeLineColor: Colors.grey,
-            inactiveLineColor: Colors.grey,
-            child: Center(
-              child: Container(
-                color: Colors.green[300],
-                height: 20,
-                width: 6,
+            min: 0,
+            onDragging: (handlerIndex, lowerValue, upperValue) {
+              onChanged(lowerValue);
+            },
+            handler: FlutterSliderHandler(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: Material(
+                borderRadius: BorderRadius.circular(3),
+                type: MaterialType.canvas,
+                color: Colors.grey,
+                elevation: 10,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(8, 15, 8, 15),
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    // borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
             ),
-            onChanged: onChanged,
+            trackBar: FlutterSliderTrackBar(
+              inactiveTrackBar: BoxDecoration(
+                borderRadius: BorderRadius.circular(3),
+                color: Colors.grey,
+                border: Border.all(width: 3, color: Colors.grey),
+              ),
+              activeTrackBar: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.grey,
+              ),
+            ),
+            handlerAnimation: FlutterSliderHandlerAnimation(
+                curve: Curves.elasticOut,
+                reverseCurve: Curves.bounceIn,
+                duration: Duration(milliseconds: 500),
+                scale: 1.0),
           ),
         ),
-        Transform(
-          alignment: FractionalOffset.center,
-          transform: Matrix4.identity()..rotateZ(90 * 3.1415927 / 60),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-          ),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          title,
+          textAlign: TextAlign.center,
         ),
       ],
     );
