@@ -90,7 +90,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                   children: [
                                     awesomeSlider(
                                         slider1Value,
-                                        '-8.0 db\n2.215\n14 kHz',
+                                        '-8.0 db\n2.215\n60 Hz',
                                         width, (value) {
                                       setState(() {
                                         slider1Value = value;
@@ -98,7 +98,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                     }),
                                     awesomeSlider(
                                         slider2Value,
-                                        '-8.0 db\n2.215\n3 kHz',
+                                        '-8.0 db\n2.215\n230 Hz',
                                         width, (value) {
                                       setState(() {
                                         slider2Value = value;
@@ -114,7 +114,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                     }),
                                     awesomeSlider(
                                         slider4Value,
-                                        '-8.0 db\n2.215\n230 Hz',
+                                        '-8.0 db\n2.215\n3 kHz',
                                         width, (value) {
                                       setState(() {
                                         slider4Value = value;
@@ -122,7 +122,7 @@ class _EqualizerPageState extends State<EqualizerPage> {
                                     }),
                                     awesomeSlider(
                                         slider5Value,
-                                        '-8.0 db\n2.215\n60 Hz',
+                                        '-8.0 db\n2.215\n14 kHz',
                                         width, (value) {
                                       setState(() {
                                         slider5Value = value;
