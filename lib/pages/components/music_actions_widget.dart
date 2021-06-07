@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class MusicActionsWidget extends StatelessWidget {
-  const MusicActionsWidget({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,4 +30,5 @@ class MusicActionsWidget extends StatelessWidget {
       ],
     );
   }
+
 }

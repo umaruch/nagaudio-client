@@ -1,14 +1,23 @@
-class Song {
-  String songName;
-  String singerName;
+class Song{
+  String file;
+  String lastModified;
+  String artist;
+  String title;
+  String album;
+  String duration;
+  int pos;
+  int id;
 
-  Song(this.songName, this.singerName);
+  Song(this.title, this.artist, this.id);
 
-  static List<Song> stubItems() {
-    return [
-      Song('Now That You\'re Gone', 'Father john Misty'),
-      Song('The Only One', 'The Black Keys'),
-      Song('Doing It To Death', 'The Kills'),
-    ];
+  Song.fromJSON(Map<String, dynamic> data){
+    this.file = data["file"];
+    this.lastModified = data["last-modified"];
+    this.artist = data["artist"];
+    this.title = data["title"];
+    this.album = data["album"];
+    this.duration = data["duration"];
+    this.pos = data["pos"];
+    this.id = data["id"];
   }
 }

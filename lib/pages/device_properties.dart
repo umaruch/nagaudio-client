@@ -1,247 +1,168 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:nagaudio/data.dart';
 import 'package:nagaudio/models/device.dart';
-import 'package:nagaudio/widgets/alert_textfield_widget.dart';
 
-class DeviceProperties extends StatefulWidget {
-  DeviceProperties({Key key, this.item}) : super(key: key);
-
-  final Device item;
-
-  @override
-  _DevicePropertiesState createState() => _DevicePropertiesState();
-}
-
-class _DevicePropertiesState extends State<DeviceProperties>
-    with TickerProviderStateMixin {
-  AnimationController controller;
-
-  @override
-  void initState() {
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 5),
-    )..addListener(() {
-        setState(() {});
-      });
-    controller.repeat(reverse: true);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+class DeviceProperties extends StatelessWidget {
 
   Widget build(BuildContext context) {
-    Device item = widget.item;
+    Device item = Provider.of<Data>(context).currentDevice;
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Сведения об устройстве',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headline1
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 0,
-                child: Divider(
-                  color: Colors.black,
+      body: Center(
+        child: Container(
+          constraints: BoxConstraints(maxWidth: 800),
+
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 20,
+                  ),
+                  child: 
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Имя устройства:',
+                            style: Theme.of(context).textTheme.headline2
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                item.name,
+                                style: Theme.of(context).textTheme.subtitle1
+                              ),
+                              SizedBox(
+                                width: 7,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  showEditNameDialog(context);
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 15,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 20,
+                  ),
+                  child: 
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Текущий профиль:',
+                            style: Theme.of(context).textTheme.headline2
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Example1.xml",
+                                style: Theme.of(context).textTheme.subtitle1
+                              ),
+                              SizedBox(
+                                width: 7,
+                              ),
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 15,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Имя устройства:',
-                          style: TextStyle(
+                buildRowWidget(context, 'Авторов:', 3.toString()),
+                buildRowWidget(context, 'Альбомов', 3.toString()),
+                buildRowWidget(context, 'Песен', 3.toString()),
+                buildRowWidget(context, 'Время проигрывания', "12:34:21"),
+                buildRowWidget(context, 'Время работы сервера', "0:12:04"),
+                buildRowWidget(context, 'Общее время проигрывания треков', "56:32:12"),
+                buildRowWidget(context, 'Последнее обновление базы данных', "12.12.2012"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Row(
+                    children: [
+                      Container(
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
                             color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              item.name,
+                          child: TextButton(
+                            onPressed: () {
+                            },
+                            child: Text(
+                              'Обновить БД',
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                             ),
-                            SizedBox(
-                              width: 7,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                AlertTextfieldWidget(
-                                  title: 'Имя устройства',
-                                  text: '',
-                                  hint: 'Текущее имя',
-                                  onCancel: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  onSave: (value) {
-                                    Navigator.of(context).pop();
-                                  },
-                                ).show(context);
-                              },
-                              child: Icon(
-                                Icons.edit,
-                                size: 15,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: 30,
-                      width: 130,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey,
-                      ),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Обновить БД',
-                          style: TextStyle(
-                            color: Colors.white,
                           ),
-                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 5,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Текущий профиль',
-                          style: TextStyle(
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
                             color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              item.profile,
+                          child: TextButton(
+                            onPressed: () {
+                            },
+                            child: Text(
+                              'Перезагрузить устройство',
                               style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: 30,
-                      width: 130,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey,
-                      ),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Изменить',
-                          style: TextStyle(
-                            color: Colors.white,
                           ),
-                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              buildRowWidget('Авторов:', item.authors.toString()),
-              buildRowWidget('Альбомов', item.albums.toString()),
-              buildRowWidget('Песен', item.songs.toString()),
-              buildRowWidget('Время проигрывания', item.time),
-              buildRowWidget('Время работы сервера', item.serverTime),
-              buildRowWidget('Общее время проигрывания треков', item.totalTime),
-              buildRowWidget(
-                  'Последнее обновление базы данных', item.lastUpdated),
-              Padding(
-                padding: const EdgeInsets.only(left: 12),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.yellow),
-                        );
-                      },
-                      child: Container(
-                        height: 35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.grey,
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            setState(
-                              () {
-                                LinearProgressIndicator(
-                                  value: controller.value,
-                                  semanticsLabel: 'Linear progress indicator',
-                                );
-                              },
-                            );
-                          },
-                          child: Text(
-                            'Перезагрузить устройство',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -349,7 +270,7 @@ class _DevicePropertiesState extends State<DeviceProperties>
     );
   }
 
-  Padding buildRowWidget(String title, String description) {
+  Padding buildRowWidget(BuildContext context, String title, String description) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 12,
@@ -360,11 +281,7 @@ class _DevicePropertiesState extends State<DeviceProperties>
         children: [
           Text(
             title,
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.headline2
           ),
           SizedBox(
             height: 10,
@@ -373,10 +290,7 @@ class _DevicePropertiesState extends State<DeviceProperties>
             children: [
               Text(
                 description,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.subtitle1
               ),
             ],
           ),

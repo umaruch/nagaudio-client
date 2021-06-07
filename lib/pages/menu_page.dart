@@ -3,7 +3,6 @@ import 'package:nagaudio/models/device.dart';
 import 'package:nagaudio/models/playlist.dart';
 import 'package:nagaudio/pages/browser_page.dart';
 import 'package:nagaudio/pages/device_properties.dart';
-import 'package:nagaudio/pages/devices_page.dart';
 import 'package:nagaudio/pages/home_page.dart';
 import 'package:nagaudio/pages/main_page.dart';
 import 'package:nagaudio/pages/main_page_library.dart';
